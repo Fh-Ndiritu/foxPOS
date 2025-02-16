@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   private
 
   def set_active_storage_url_options
-    ActiveStorage::Current.url_options = { host: request.base_url }
+    ActiveStorage::Current.url_options = { host: "localhost", protocol: "http", port: 3000 }
   end
 
   def render_flash_if_turbo

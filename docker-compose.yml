@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - RAILS_ENV=${RAILS_ENV}
+      - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+    ports:
+      - "3000:3000" # Map port 3000 in the container to port 3000 on the host
+    volumes:
+      - .:/rails
+    command: ./bin/rails server -b 0.0.0.0 -p 3000

@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
   end
 
   def options
-    @products = @category.products.displayable if @category
+    @products = @category.products.active_and_available if @category
     @order = Order.find(params.expect(:order_id))
   end
 
@@ -49,7 +49,7 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.items.present? && @order.update(order_params)
-        if(@order.complete?)
+        if @order.complete?
           redirect_to show_receipt_path(@order) and return
         end
         format.html { redirect_to orders_path, notice: "Order was successfully updated." }
