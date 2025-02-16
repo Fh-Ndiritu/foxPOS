@@ -1,0 +1,17 @@
+# we move this to ~/.local/share/applications/ if on mac or linux
+# then ensure start_foxpos.sh is executable chmod +x /home/fh/code/Dev/playground/foxPOS/start_foxpos.sh
+# ensure this file is executable chmod +x ~/.local/share/applications/FoxPos.desktop
+# copy the shortcut icon to desktop
+cp ~/.local/share/applications/FoxPos.desktop ~/Desktop/
+chmod +x ~/Desktop/FoxPos.desktop
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=FoxPos
+Exec=bash -c "/home/fh/code/Dev/playground/foxPOS/start_foxpos.sh && google-chrome --new-window --app=http://localhost:3000"
+Icon=/home/fh/code/Dev/playground/foxPOS/icon.png
+Terminal=true
+Categories=Utility;Application;
+StartupWMClass=FoxPos
+
