@@ -2,12 +2,12 @@
 <div class="sidebar-left bg-[#292C2D] w-2/12 h-full rounded-tr-3xl rounded-br-3xl py-6 justify-center">
   <%= render('shared/sidebar_left') %>
 </div>
-<div class="main-section w-10/12 h-screen py-4 px-4 block text-text-primary" data-controller="orders">
-  <div class="order-tabs w-full my-6 flex justify-between">
-    <div class="tabs flex w-6/12 text-lg justify-between">
+<div class="main-section w-10/12 py-4 px-4 block text-text-primary h-screen" data-controller="orders">
+  <div class="order-tabs w-full px-2 py-6 my-6 flex justify-between">
+    <div class="tabs flex w-8/12 text-lg justify-between">
       <div data-order-progress="all active text-white flex" class="all">
         <%= render(ButtonComponent.new(
-        text: 'All',
+        text: 'Current',
         href: orders_path,
         classes: 'bg-bg-tertiary px-4 py-2 hover:bg-bg-secondary max-w-32 text-gray-900 hover:text-white hover:bg-bg-ternary'
         )
@@ -33,7 +33,7 @@
       )
       ) %>
   </div>
-  <div class="text-text-primary">
+  <div class="text-text-primary h-auto sm:h-[85vh] pb-[5vh] pr-6 overflow-y-auto custom-bar">
     <%= turbo_frame_tag "orders" do %>
       <% if @orders.any? %>
         <div class="row grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 gap-8 w-full">

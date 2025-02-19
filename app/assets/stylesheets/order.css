@@ -1,16 +1,30 @@
-.orders .kitchen {
-  background: #ffc3c3;
-}
-.orders .ready {
-  background: #ffedbe;
-}
-.orders .complete {
-  background: #e3ffe4;
-}
 .orders .cart {
-  background: #a7a7a7;
+  background: #e0e0e0; /* Soft gray for items in cart */
 }
 
+.orders .payment {
+  background: #f8e5c2; /* Light warm beige for payment processing */
+}
+
+.orders .kitchen {
+  background: #f4c2c2; /* Muted soft red for orders being prepared */
+}
+
+.orders .ready {
+  background: #f7e3a1; /* Soft warm yellow for orders ready for pickup */
+}
+
+.orders .complete {
+  background: #c7e8c9; /* Gentle pastel green for completed orders */
+}
+
+.orders .served {
+  background: #d0e4f5; /* Light pastel blue to show the order has been served */
+}
+
+.orders .pending {
+  background: #a1a1a1; /* Light gray for pending orders */
+}
 .orders table {
   width: 100%;
   border-collapse: collapse;

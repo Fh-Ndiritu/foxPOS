@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
     if Order.progresses.keys.include?(progress)
       @orders = Order.where(progress:).limit(20)
     else
-      @orders = Order.in_process.or(Order.complete).limit(20)
+      @orders = Order.in_process.order(progress: :desc).limit(20)
     end
   end
 
@@ -49,7 +49,7 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.items.present? && @order.update(order_params)
-        if @order.complete?
+        if @order.payment?
           redirect_to show_receipt_path(@order) and return
         end
         format.html { redirect_to orders_path, notice: "Order was successfully updated." }

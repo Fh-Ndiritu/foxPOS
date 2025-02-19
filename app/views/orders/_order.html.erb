@@ -56,14 +56,24 @@
           <% end %>
         <% end %>
       </div>
-      <% if order.ready? || order.kitchen? %>
+      <% if order.pre_serving? %>
         <%= form_with model: order, data: {turbo: false} do |f| %>
           <button type="submit"
           name="order[progress]"
-          value="complete"
-          class="btn  flex items-center font-semibold rounded-lg text-center duration-200 bg-bg-tertiary px-4 py-2 hover:bg-bg-ternary max-w-60 text-gray-900 hover:text-white"
+          value="served"
+          class="btn flex items-center font-semibold rounded-lg text-center duration-200 bg-bg-tertiary px-4 py-2 hover:bg-bg-ternary max-w-60 text-gray-900 hover:text-white cursor-pointer"
           >
-            Mark as Paid
+            Set Served
+          </button>
+        <% end %>
+      <% elsif order.served? %>
+        <%= form_with model: order, data: {turbo: false} do |f| %>
+          <button type="submit"
+          name="order[progress]"
+          value="payment"
+          class="btn flex items-center font-semibold rounded-lg text-center duration-200 bg-bg-tertiary px-4 py-2 hover:bg-bg-ternary max-w-60 text-gray-900 hover:text-white cursor-pointer"
+          >
+            Print Receipt
           </button>
         <% end %>
       <% end %>

@@ -2,7 +2,7 @@ class Order < ApplicationRecord
   has_many :items, dependent: :destroy
   has_many :products, through: :items
   default_scope { order(created_at: :desc, progress: :asc) }
-  scope :in_process, -> { where(progress: [ :kitchen, :ready ]) }
+  scope :in_process, -> { where(progress: [ :kitchen, :ready, :served, :payment ]) }
 
   def recompute_cost
     subtotal =  items.sum { |item| item.quantity * item.product.price }
@@ -18,8 +18,14 @@ class Order < ApplicationRecord
     pending: 0,
     kitchen: 1,
     ready: 2,
-    complete: 3
+    served: 3,
+    payment: 4,
+    complete: 5
   }
+
+  def pre_serving?
+    ready? || kitchen?
+  end
 
   def server_name
     ""

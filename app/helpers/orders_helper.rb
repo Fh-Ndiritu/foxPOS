@@ -12,7 +12,7 @@ def progress_form(order)
                   type: "submit",
                   name: "order[progress]",
                   value: next_progress,
-                  class: "btn  flex items-center font-semibold rounded-lg text-center duration-200 bg-bg-tertiary px-4 py-2 hover:bg-bg-secondary text-gray-900 hover:text-white max-w-[15rem]"
+                  class: "btn cursor-pointer flex items-center font-semibold rounded-lg text-center duration-200 bg-bg-tertiary px-4 py-2 hover:bg-bg-secondary text-gray-900 hover:text-white max-w-[15rem]"
     end
   end
 
@@ -22,7 +22,9 @@ def progress_form(order)
     case current_progress
     when "pending" then :kitchen
     when "kitchen" then :ready
-    when "ready" then :complete
+    when "ready" then :served
+    when "served" then :payment
+    when "payment" then :complete
     else nil
     end
   end
@@ -31,6 +33,8 @@ def progress_form(order)
     {
       kitchen: "Send to Kitchen",
       ready: "Mark as Ready",
+      served: "Mark as Served",
+      payment: "Mark as Paid",
       complete: "Mark as Complete"
     }[next_progress]
   end
@@ -39,7 +43,9 @@ def progress_form(order)
     {
       kitchen: "btn btn-primary",
       ready: "btn btn-warning",
-      complete: "btn btn-success"
+      served: "btn btn-info",
+      payment: "btn btn-secondary",
+      complete: "btn btn-success",
     }[next_progress]
   end
 end

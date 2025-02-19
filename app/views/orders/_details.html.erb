@@ -18,7 +18,7 @@
         <p class="py-2 text-font-semibold flex w-full justify-between"> <span>Tax</span> <span><%= number_to_currency(order.tax, unit: 'Kes') %></span></p>
         <p class="my-2 pt-2 border-t border-dashed border-bg-secondary text-font-semibold flex w-full justify-between"> <span>Total</span> <span><%= number_to_currency(order.tax, unit: 'Kes') %></span></p>
       </div>
-      <%= progress_form(order) if order%>
+      <%= progress_form(order) if order %>
     </div>
   <% end %>
 <% end %>
