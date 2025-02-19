@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   def index
     progress = params[:progress]
     if progress && Order.respond_to?(progress)
-      @orders = Order.send(progress).limit(20)
+      @orders = Order.public_send(progress).limit(20)
     else
       @orders = Order.in_process.or(Order.complete).limit(20)
     end
