@@ -5,8 +5,8 @@ class OrdersController < ApplicationController
   # GET /orders or /orders.json
   def index
     progress = params[:progress]
-    if progress && Order.respond_to?(progress)
-      @orders = Order.public_send(progress).limit(20)
+    if Order.progresses.keys.include?(progress)
+      @orders = Order.where(progress:).limit(20)
     else
       @orders = Order.in_process.or(Order.complete).limit(20)
     end
