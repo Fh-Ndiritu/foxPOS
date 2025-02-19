@@ -74,7 +74,7 @@ end
 # gem "redcarpet", "~> 3.6" # Markdown processing
 # gem "wicked_pdf" # PDF generation
 
-gem "image_processing", "~> 1.13"
+gem "image_processing", "~> 1.14"
 
 gem "prawn", "~> 2.5"
 
