@@ -14,7 +14,6 @@ def progress_form(order)
                   value: next_progress,
                   class: "btn  flex items-center font-semibold rounded-lg text-center duration-200 bg-bg-tertiary px-4 py-2 hover:bg-bg-secondary text-gray-900 hover:text-white max-w-[15rem]"
     end
-
   end
 
   private

@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
   has_many :items, dependent: :destroy
   has_many :products, through: :items
-  default_scope { order(created_at: :desc, progress: :asc)}
+  default_scope { order(created_at: :desc, progress: :asc) }
   scope :in_process, -> { where(progress: [ :kitchen, :ready ]) }
 
   def recompute_cost

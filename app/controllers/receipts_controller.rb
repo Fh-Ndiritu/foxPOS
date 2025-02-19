@@ -1,12 +1,12 @@
-require 'prawn'
-require 'prawn/measurement_extensions'
+require "prawn"
+require "prawn/measurement_extensions"
 
 class ReceiptsController < ApplicationController
   def show
     order = Order.find(params[:id]) # Fetch order details
 
     estimated_height = (order.items.count * 30) + 350
-    pdf = Prawn::Document.new(page_size: [227, estimated_height], margin: 10)
+    pdf = Prawn::Document.new(page_size: [ 227, estimated_height ], margin: 10)
 
     # Logo path (Ensure the file exists)
     logo_path = Rails.root.join("app/assets/images/logos/ja.jpg")
@@ -20,16 +20,16 @@ class ReceiptsController < ApplicationController
     additional_details = "Located at: Park Square, Ridgeways.\nFor Deliveries, Contact: 0717 840 169"
 
     # Header Section
-    pdf.bounding_box([0, pdf.bounds.top], width: pdf.bounds.width) do
+    pdf.bounding_box([ 0, pdf.bounds.top ], width: pdf.bounds.width) do
       if File.exist?(logo_path)
-        pdf.image logo_path, at: [10, pdf.bounds.top], width: 40, height: 40
+        pdf.image logo_path, at: [ 10, pdf.bounds.top ], width: 40, height: 40
       else
-        pdf.draw_text "LOGO", at: [10, pdf.bounds.top - 20], size: 10
+        pdf.draw_text "LOGO", at: [ 10, pdf.bounds.top - 20 ], size: 10
       end
 
-      pdf.draw_text business_title, at: [60, pdf.bounds.top - 10], size: 12, style: :bold
-      pdf.draw_text business_subtitle, at: [60, pdf.bounds.top - 25], size: 10
-      pdf.draw_text business_motto, at: [60, pdf.bounds.top - 40], size: 8, style: :bold
+      pdf.draw_text business_title, at: [ 60, pdf.bounds.top - 10 ], size: 12, style: :bold
+      pdf.draw_text business_subtitle, at: [ 60, pdf.bounds.top - 25 ], size: 10
+      pdf.draw_text business_motto, at: [ 60, pdf.bounds.top - 40 ], size: 8, style: :bold
     end
 
     pdf.move_down 60
@@ -47,11 +47,11 @@ class ReceiptsController < ApplicationController
     pdf.move_down 10
 
     # Table for items
-    table_data = [["Item", "Price", "Qty", "Value"]]
+    table_data = [ [ "Item", "Price", "Qty", "Value" ] ]
     order.items.each do |item|
-      table_data << [item.name, item.price, "x#{item.quantity}", item.price]
+      table_data << [ item.name, item.price, "x#{item.quantity}", item.price ]
     end
-    pdf.table(table_data, width: pdf.bounds.width - 20, header: true, cell_style: { borders: [], size: 8, padding: [2, 5] })
+    pdf.table(table_data, width: pdf.bounds.width - 20, header: true, cell_style: { borders: [], size: 8, padding: [ 2, 5 ] })
 
     pdf.move_down 10
     pdf.text "-" * 35, align: :center, size: 8
