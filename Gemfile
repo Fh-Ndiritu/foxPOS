@@ -47,7 +47,7 @@ group :development, :test do
   gem "rubocop-rails-accessibility"
   gem "rubocop-rspec"
   gem "rubocop-shopify"
-  gem "rspec-rails", "~> 6.0" # Testing framework
+  gem "rspec-rails", "~> 7.1" # Testing framework
   gem "dotenv-rails" # Load environment variables from .env
   gem "pry-byebug" # Debugging with Pry
   gem "pry-rails" # Integrate Pry with Rails console
