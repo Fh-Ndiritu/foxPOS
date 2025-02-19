@@ -33,13 +33,12 @@ gem "simple_form", github: "heartcombo/simple_form" # Simple form builder
 # Utilities
 gem "acts_as_list" # Manage ordered lists in ActiveRecord
 gem "view_component" # Framework for creating reusable, testable, & encapsulated view components
-gem "factory_bot_rails" # Test data generation
-gem "faker", "~> 3.3" # Generate fake data
 
 # Development and testing gems
 group :development, :test do
-  gem "debug", platforms: %i[mri windows], require: "debug/prelude" # Debugging tool
   gem "brakeman", require: false # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
+  gem "factory_bot_rails" # Test data generation
+  gem "faker", "~> 3.3" # Generate fake data
   gem "rubocop-rails-omakase", require: false # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-discourse", "~> 3.0"
   gem "rubocop-packaging"
@@ -48,7 +47,7 @@ group :development, :test do
   gem "rubocop-rspec"
   gem "rubocop-shopify"
   gem "rspec-rails", "~> 6.0" # Testing framework
-  gem "dotenv-rails" # Load environment variables from .env
+  gem "dotenv"
   gem "pry-byebug" # Debugging with Pry
   gem "pry-rails" # Integrate Pry with Rails console
   gem "erb_lint" # Lint ERB files

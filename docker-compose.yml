@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      - RAILS_ENV=${RAILS_ENV}
+      - RAILS_ENV=development
       - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
     ports:
       - "3000:3000" # Map port 3000 in the container to port 3000 on the host
