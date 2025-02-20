@@ -6,11 +6,13 @@ class Order < ApplicationRecord
 
   def recompute_cost
     subtotal =  items.sum { |item| item.quantity * item.product.price }
-    tax = subtotal.to_f * 0.16   # update to dynamic rates
+    total = subtotal
+    tax = total.to_f * 0.16   # update to dynamic rates
+    subtotal = total-tax
     update(
-      subtotal: subtotal,
-      tax: tax,
-      total:  subtotal + tax
+      subtotal:,
+      tax:,
+      total:
     )
   end
 
