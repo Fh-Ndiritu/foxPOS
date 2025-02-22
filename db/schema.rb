@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_22_102126) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_22_153612) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -81,6 +81,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_22_102126) do
     t.string "size", default: "Small"
     t.integer "stock", default: 10
     t.integer "availability", default: 1
+    t.boolean "hidden", default: false
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
