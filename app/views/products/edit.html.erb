@@ -1,7 +1,7 @@
 <% content_for :title, "Editing product" %>
 <div class="md:w-2/3 w-full">
   <%= turbo_frame_tag 'edit_product' do %>
-    <div class="h-screen bg-bg-secondary rounded-tl-3xl rounded-bl-3xl fixed top-0 right-0 w-3/12 px-8 py-12 justify-center text-white overflow-y-auto custom-bar">
+    <div class="h-screen bg-bg-secondary rounded-tl-3xl rounded-bl-3xl fixed top-0 right-0 w-5/12 xl:w-3/12 px-8 py-12 justify-center text-white overflow-y-auto custom-bar">
       <div class="flex justify-between border-b border-bg-ternary py-3">
         <h1 class="font-bold text-xl">Editing <%= @product.name %></h1>
         <%= link_to products_path do %>

@@ -6,10 +6,8 @@ class Category < ApplicationRecord
 
   default_scope { order(:name) }
 
-  enum :status, {
-    inactive: 0,
-    active: 1
-  }
+  scope :inactive, -> { where(active: false) }
+  scope :active, -> { where(active: true) }
 
   scope :active_with_active_products, -> {
     active.joins(:products)

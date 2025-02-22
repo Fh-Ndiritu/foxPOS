@@ -27,11 +27,12 @@
     input_html: { rows: 4, class: "block w-full px-4 py-2 mt-2 border-0 rounded-lg shadow-sm" } %>
   </div>
   <div class="my-8 flex items-center">
-    <%= form.input :status, as: :boolean, label: "Active?",
+    <%= form.input :active, as: :boolean, label: "Active?",
       wrapper_html: { class: "flex items-center space-x-2" },
       label_html: { class: "text-white" },
-      input_html: { class: "h-5 w-5  border-gray-300 rounded" } %>
+      input_html: { class: "h-5 w-5 border-gray-300 rounded", checked: @category.active} %>
   </div>
+
   <div class="inline">
     <%= render(ButtonComponent.new(
       text: 'Save',
