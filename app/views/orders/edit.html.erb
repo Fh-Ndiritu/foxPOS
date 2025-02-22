@@ -2,9 +2,9 @@
 <%= turbo_stream_from 'order_items' %>
 <% content_for :body_class, "collapsed-sidebar" %>
 <div class="main-section w-full h-screen py-4 px-4 flex">
-  <div class="w-8/12 lg:w-9/12 pr-4 h-full items-between">
+  <div class="w-8/12 lg:w-9/12 pr-4 h-full items-between" data-controller="tabs">
     <div class=" rounded-lg bg-[#565E60] p-4 pb-0">
-      <div class="rounded-lg overflow-x-auto bg-[#565E60] p-2 pb-6 flex gap-4 custom-bar " id="categories">
+      <div class="rounded-lg overflow-x-auto bg-[#565E60] p-2 pb-6 flex gap-4 custom-bar tabs-group" id="categories">
        <% if @categories.any? %>
           <%= render partial: 'orders/category', collection: @categories, locals: { order: @order} %>
         <% else %>

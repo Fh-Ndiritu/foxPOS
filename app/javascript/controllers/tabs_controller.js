@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 
+// # controls how active tabs are switched, currently on categories and order progress
 // Connects to data-controller="tabs"
 export default class extends Controller {
   connect() {

@@ -2,26 +2,26 @@
 <div class="sidebar-left bg-[#292C2D] w-2/12 h-full rounded-tr-3xl rounded-br-3xl py-6 justify-center">
   <%= render('shared/sidebar_left') %>
 </div>
-<div class="main-section w-10/12 py-4 px-4 block text-text-primary h-screen" data-controller="orders">
-  <div class="order-tabs w-full px-2 py-4 lg:py-6 my-6 block lg:flex justify-between items-center ">
-    <div class="tabs flex overflow-x-auto custom-bar w-full lg:w-9/12 text-base justify-center lg:justify-left items-center" data-controller="tabs">
-       <div class="w-full flex gap-2 items-center p-2 tabs-group" >
-         <%= render(ButtonComponent.new(
-        text: 'Current',
-        href: orders_path,
-        classes: 'bg-bg-primary text-text-primary hover:text-text-secondary hover:bg-bg-tertiary p-2 m-0 tab active'
-        )
-       ) %>
-      <% Order.progresses.keys.each do |progress| %>
+<div class="main-section w-10/12 py-4 px-4 block text-text-primary h-screen" data-controller="tabs">
+  <div class="order-tabs w-full px-2 mt-4 mb-8 block lg:flex justify-between items-center ">
+    <div class="tabs flex overflow-x-auto custom-bar w-full lg:w-9/12 text-base justify-center lg:justify-left items-center" >
+        <div class="w-full flex gap-2 items-center p-2 tabs-group" >
           <%= render(ButtonComponent.new(
-          text: progress,
-          href: orders_path(progress: progress),
-          data: { turbo_frame: 'orders'},
-          classes: ' bg-bg-primary text-text-primary hover:text-text-secondary hover:bg-bg-tertiary p-2 m-0 tab'
-          )
+            text: 'Current',
+            href: orders_path,
+            classes: 'bg-bg-primary text-text-primary hover:text-text-secondary hover:bg-bg-tertiary p-2 m-0 tab active'
+            )
           ) %>
-      <% end %>
-       </div>
+          <% Order.progresses.keys.each do |progress| %>
+              <%= render(ButtonComponent.new(
+              text: progress,
+              href: orders_path(progress: progress),
+              data: { turbo_frame: 'orders'},
+              classes: ' bg-bg-primary text-text-primary hover:text-text-secondary hover:bg-bg-tertiary p-2 m-0 tab'
+              )
+              ) %>
+          <% end %>
+        </div>
     </div>
     <div class="flex w-full lg:w-3/12 relative justify-center lg:mt-0 lg:justify-end items-center px-2 text-base p-4"
     >

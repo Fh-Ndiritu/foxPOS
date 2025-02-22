@@ -5,7 +5,7 @@
 <div class="sidebar-left bg-[#292C2D] w-3/12 lg:w-2/12 h-full rounded-tr-3xl rounded-br-3xl py-6 justify-center">
   <%= render('shared/sidebar_left') %>
 </div>
-<div class="main-section w-9/12 lg:w-10/12 pl-4 h-screen overflow-y-scroll custom-bar ">
+<div class="main-section w-9/12 lg:w-10/12 pl-4 h-screen overflow-y-scroll custom-bar " data-controller="tabs">
   <div class=" w-full justify-between inline-flex items-center" style="height: 10vh">
     <h1 class="text-2xl font-semibold text-white my-2">Categories</h1>
     <%= render(ButtonComponent.new(
@@ -19,7 +19,7 @@
   <div class="w-full">
     <div class=" rounded-lg bg-[#565E60] p-4 pb-0">
       <%= turbo_frame_tag  "categories" do %>
-        <div class="rounded-lg overflow-x-auto bg-[#565E60] p-2 pb-6 flex gap-4 custom-bar tabs-group" data-controller="tabs">
+        <div class="rounded-lg overflow-x-auto bg-[#565E60] p-2 pb-6 flex gap-4 custom-bar tabs-group">
           <div class="item-link gap-4 ">
             <%= render(ItemThumbnailComponent.new(
             title: 'All',

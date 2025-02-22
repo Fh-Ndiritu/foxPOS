@@ -2,7 +2,7 @@
   <%= render(ItemThumbnailComponent.new(
         title: category.name,
         count: category.products_count,
-        classes: '',
+        classes: 'tab',
         href: category_products_path(category) ,
         image_url: category.image.url,
         data: { turbo_frame: 'products'}
