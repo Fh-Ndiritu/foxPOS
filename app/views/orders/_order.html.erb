@@ -2,8 +2,14 @@
   <div class="bg-bg-secondary p-4 rounded-lg text-white block">
     <div class="flex w-full items-center justify-between pb-4">
       <span>Order #<%= order.id %></span>
-      <% if order.served? %>
-        <%= link_to "Print Receipt", show_receipt_path(order, format: :pdf), target: "_blank", class: "rounded-lg px-4 py-2 bg-bg-ternary text-primary " %>
+      <% if order.served? || order.complete? %>
+          <%= link_to show_receipt_path(order, format: :pdf), target: "_blank" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#FAC1D9" viewBox="0 0 256 256">
+            <path d="M214.67,72H200V40a8,8,0,0,0-8-8H64a8,8,0,0,0-8,8V72H41.33C27.36,72,16,82.77,16,96v80a8,8,0,0,0,8,8H56v32a8,8,0,0,0,8,8H192a8,8,0,0,0,8-8V184h32a8,8,0,0,0,8-8V96C240,82.77,228.64,72,214.67,72ZM72,48H184V72H72ZM184,208H72V160H184Zm40-40H200V152a8,8,0,0,0-8-8H64a8,8,0,0,0-8,8v16H32V96c0-4.41,4.19-8,9.33-8H214.67c5.14,0,9.33,3.59,9.33,8Zm-24-52a12,12,0,1,1-12-12A12,12,0,0,1,200,116Z">
+            </path>
+          </svg>
+        <% end %>
+
       <% end %>
       <div class="rounded-lg px-4 py-2  text-text-secondary <%= order.progress %>">
         <%= order.progress %>
@@ -42,7 +48,7 @@
 
     </div>
 
-    <div class="flex w-full justify-between">
+    <div class="flex w-full justify-between items-center">
       <!--Icons will be here-->
       <div class="flex">
         <% if  !order.complete?  %>
@@ -69,7 +75,7 @@
           value="served"
           class="btn flex items-center font-semibold rounded-lg text-center duration-200 bg-bg-tertiary px-4 py-2 hover:bg-bg-ternary max-w-60 text-gray-900 hover:text-white cursor-pointer"
           >
-            Set Served
+            Served
           </button>
         <% end %>
       <% elsif order.served? %>

@@ -19,12 +19,12 @@
   <div class="w-full">
     <div class=" rounded-lg bg-[#565E60] p-4 pb-0">
       <%= turbo_frame_tag  "categories" do %>
-        <div class="rounded-lg overflow-x-auto bg-[#565E60] p-2 pb-6 flex gap-4 custom-bar ">
-          <div class="item-link gap-4 active">
+        <div class="rounded-lg overflow-x-auto bg-[#565E60] p-2 pb-6 flex gap-4 custom-bar tabs-group" data-controller="tabs">
+          <div class="item-link gap-4 ">
             <%= render(ItemThumbnailComponent.new(
             title: 'All',
             count: Product.count,
-            classes: '',
+            classes: 'tab active',
             href: products_path,
             data: {turbo_frame: 'products'},
             svg:  '<svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -33,9 +33,7 @@
                   '
             )) %>
           </div>
-          <% Category.all.each do |category| %>
-            <%= render partial: 'categories/category', locals: { href: category_products_path(category), category: category} %>
-          <% end %>
+            <%= render @categories %>
         </div>
       <% end %>
     </div>

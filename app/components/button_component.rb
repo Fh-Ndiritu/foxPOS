@@ -1,6 +1,6 @@
 class ButtonComponent < ViewComponent::Base
   DEFAULT_CLASSES = %w[
-    btn flex w-full flex-col items-center font-semibold py-2 px-8 rounded-lg
+    btn flex w-full flex-col items-center font-semibold py-2 px-2 rounded-lg
     hover:bg-bg-tertiary hover:text-black text-center duration-200
   ].freeze
 

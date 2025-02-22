@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "order_options" do %>
   <% if @products.any? %>
-    <div class="w-full grid sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4 h-[60vh] pb-[10vh] overflow-y-auto custom-bar">
+    <div class="w-full grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 h-[60vh] pb-[10vh] overflow-y-auto custom-bar">
       <% @products.each do |product| %>
         <%= render partial: "option", locals: { product: product, order: @order } %>
       <% end %>

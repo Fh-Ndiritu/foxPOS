@@ -1,4 +1,4 @@
-  <%= turbo_frame_tag "products" do%>
+  <%= turbo_frame_tag "products" do %>
   <div class="flex justify-between items-center w-full text-white py-4">
     <div class="justify-between w-8/12 flex items-center">
       <h1 class="font-bold text-2xl py-6 flex">
@@ -29,25 +29,25 @@
   </div>
   <div id="products" class="min-w-full rounded">
     <div class="rounded-lg p-4 bg-[#565E60] overflow-y-auto custom-bar" style="max-height: 600px">
-      <div class="rounded-lg overflow-x-auto pb-6  flex gap-4 h-full bg-gray-400 custom-bar" id="categories">
+      <div class="rounded-lg overflow-x-auto pb-6 flex gap-4 h-full bg-gray-400 custom-bar">
         <% if @products.any? %>
           <table class="min-w-full rounded-lg overflow-hidden text-white items-center">
-            <thead class="py-4">
-              <tr class="text-sm">
-                <!--<th class="px-4 py-2"><input type="checkbox"></th>-->
-                <th class="px-4 py-2 md:min-w-20">Product</th>
-                <th class="px-4 py-2 md:min-w-20">Name</th>
-                <th class="px-4 py-2 md:min-w-20 ">Item ID</th>
-                <th class="px-4 py-2 md:min-w-20">Stock</th>
-                <% unless @category.present? %>
-                  <th class="px-4 py-2 md:min-w-20">Category</th>
-                <% end %>
-                <th class="px-4 py-2 md:min-w-20">Price</th>
-                <th class="px-4 py-2 md:min-w-20">Availability</th>
-                <th class="px-4 py-2 md:min-w-20">Edit</th>
-                <th class="px-4 py-2 md:min-w-20">Delete</th>
-              </tr>
-            </thead>
+          <thead class="py-4">
+            <tr class="text-sm">
+              <!--<th class="px-4 py-2"><input type="checkbox"></th>-->
+              <th class="px-4 py-2 md:min-w-20">Product</th>
+              <th class="px-4 py-2 md:min-w-20">Name</th>
+              <th class="px-4 py-2 md:min-w-20 ">Item ID</th>
+              <th class="px-4 py-2 md:min-w-20">Stock</th>
+              <% unless @category.present? %>
+                <th class="px-4 py-2 md:min-w-20">Category</th>
+              <% end %>
+              <th class="px-4 py-2 md:min-w-20">Price</th>
+              <th class="px-4 py-2 md:min-w-20">Availability</th>
+              <th class="px-4 py-2 md:min-w-20">Edit</th>
+              <th class="px-4 py-2 md:min-w-20">Delete</th>
+            </tr>
+          </thead>
             <tbody>
               <% @products.each do |product| %>
                 <%= render product %>
@@ -55,7 +55,7 @@
             </tbody>
           </table>
         <% else %>
-          <p class="w-full text-center my-10 text-white">No products found.</p>
+          <p class=" my-10 text-white w-full w-full text-center">No products found.</p>
         <% end %>
       </div>
     </div>

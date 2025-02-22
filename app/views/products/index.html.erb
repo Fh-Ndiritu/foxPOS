@@ -9,27 +9,27 @@
   <% end %>
   <%= turbo_frame_tag "products" do%>
     <div class="flex justify-between items-center w-full  text-white py-9">
-      <div class="justify-between w-8/12 flex items-center">
-        <h1 class="font-bold text-2xl py-6 flex">
+      <div class="justify-between w-6/12 h-8 flex items-center overflow-hidden">
+        <h1 class="font-bold text-2xl py-6 line-clamp-1">
           <% if @category %>
             <%=  @category.name %>
           <% else %>
             Popular Items
           <% end %>
         </h1>
+      </div>
+      <div class="w-6/12 justify-between flex">
         <% if @category %>
           <%= render(ButtonComponent.new(
           text: 'Edit Category',
-          classes: 'flex h-auto bg-bg-tertiary px-4 py-2 hover:bg-bg-secondary max-w-60 text-gray-900 hover:text-white',
+          classes: 'flex h-auto bg-bg-tertiary px-4 py-2 hover:bg-bg-secondary max-w-48 text-gray-900 hover:text-white',
           href: edit_category_path(@category),
           data: {turbo_frame: 'edit_category'}
           )) %>
         <% end %>
-      </div>
-      <div class="w-4/12 justify-center flex">
         <%= render(ButtonComponent.new(
-            text: 'Add New Product',
-      classes: 'bg-bg-tertiary px-4 py-2 hover:bg-bg-secondary max-w-60 text-gray-900 hover:text-white',
+            text: 'New Product',
+      classes: 'bg-bg-tertiary px-4 py-2 hover:bg-bg-secondary max-w-48 text-gray-900 hover:text-white',
       href: new_product_path,
       data: { turbo_frame: 'new_product'}
 
@@ -37,28 +37,27 @@
       ) %>
       </div>
     </div>
-    <div id="products" class="min-w-full">
-      <div id="products" class="min-w-full rounded">
-        <div class="rounded-lg p-4 bg-[#565E60]" style="max-height: 600px;">
+     <div id="products" class="min-w-full rounded">
+        <div class="rounded-lg p-4 bg-[#565E60] overflow-y-auto custom-bar" style="max-height: 600px">
           <div class="rounded-lg overflow-x-auto pb-6 flex gap-4 h-full bg-gray-400 custom-bar">
             <% if @products.any? %>
               <table class="min-w-full rounded-lg overflow-hidden text-white items-center">
-                <thead class="py-4">
-                  <tr>
-                    <th class="px-4 py-2"><input type="checkbox"></th>
-                    <th class="px-4 py-2">Product</th>
-                    <th class="px-4 py-2">Name</th>
-                    <th class="px-4 py-2">Item ID</th>
-                    <th class="px-4 py-2">Stock</th>
-                    <% unless @category.present? %>
-                      <th class="px-4 py-2">Category</th>
-                    <% end %>
-                    <th class="px-4 py-2">Price</th>
-                    <th class="px-4 py-2">Availability</th>
-                    <th class="px-4 py-2">Edit</th>
-                    <th class="px-4 py-2">Delete</th>
-                  </tr>
-                </thead>
+              <thead class="py-4">
+                <tr class="text-sm">
+                  <!--<th class="px-4 py-2"><input type="checkbox"></th>-->
+                  <th class="px-4 py-2 md:min-w-20">Product</th>
+                  <th class="px-4 py-2 md:min-w-20">Name</th>
+                  <th class="px-4 py-2 md:min-w-20 ">Item ID</th>
+                  <th class="px-4 py-2 md:min-w-20">Stock</th>
+                  <% unless @category.present? %>
+                    <th class="px-4 py-2 md:min-w-20">Category</th>
+                  <% end %>
+                  <th class="px-4 py-2 md:min-w-20">Price</th>
+                  <th class="px-4 py-2 md:min-w-20">Availability</th>
+                  <th class="px-4 py-2 md:min-w-20">Edit</th>
+                  <th class="px-4 py-2 md:min-w-20">Delete</th>
+                </tr>
+              </thead>
                 <tbody>
                   <% @products.each do |product| %>
                     <%= render product %>
@@ -71,6 +70,5 @@
           </div>
         <% end %>
       </div>
-    </div>
   </div>
   <!---->

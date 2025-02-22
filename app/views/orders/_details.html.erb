@@ -1,5 +1,16 @@
 <%= turbo_frame_tag 'order_details', class: 'h-full' do %>
-  <h2 class="text-xl my-3">Order number #<%= order.id %></h2>
+  <div class="flex w-full justify-between items-center">
+    <h2 class="text-xl my-3">Order number #<%= order.id %></h2>
+      <%= link_to root_path, data: {turbo_frame: "_top"} do %>
+      <span class="cursor-pointer close">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="17.83" cy="17.83" r="17.83" transform="matrix(4.37114e-08 1 1 -4.37114e-08 0 0.171875)" fill="#FAC1D9"/>
+          <path d="M15.6016 13.543L20.0591 18.0005L15.6016 22.458" stroke="black" stroke-width="1.11438" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    <% end %>
+  </div>
+
   <%= turbo_frame_tag 'order_items' do %>
     <div class="h-3/6 custom-bar overflow-y-auto">
       <% if order.items.any? %>

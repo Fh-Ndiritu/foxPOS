@@ -1,6 +1,8 @@
 <!--# displays the products on order edit page below each category-->
 <%= turbo_frame_tag dom_id(product), class:"item-link flex" do %>
-  <div class="item-thumbnail order-item-thumbnail rounded-lg h-40 w-40 md:h-40 lg:h-40 text-normal text-white duration-200 bg-bg-secondary  #{@classes} custom-bar ">
+  <div class="item-thumbnail
+  order-item-thumbnail
+  rounded-lg min-w-48 h-48 lg text-normal text-white duration-200 bg-bg-secondary">
     <div class="thumbnail-content ">
       <!-- Image in top-right corner -->
       <div class="size bg-bg-tertiary px-2 text-space-900 absolute left-2 top-2 rounded-lg"> <%= product.size %> </div>
