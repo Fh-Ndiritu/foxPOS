@@ -5,8 +5,8 @@ class Product < ApplicationRecord
 
 
   enum :availability, {
-    out_of_stock: 0,
-    in_stock: 1
+    in_stock: 1,
+    out_of_stock: 0
   }
 
   scope :active_and_available, -> { in_stock.where(active: true).where("stock > ?", "0") }

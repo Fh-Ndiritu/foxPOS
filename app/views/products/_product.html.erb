@@ -1,10 +1,10 @@
 <tr class="hover:bg-[#565E60] <%= product.id.even? ? 'bg-bg-secondary': 'bg-bg-primary' %>" id="<%= dom_id product %>">
-  <td class="px-4 py-2 text-center justify-center"><input type="checkbox" value="<%= product.id %>"></td>
+  <!--<td class="px-4 py-2 text-center justify-center"><input type="checkbox" value="<%#= product.id %>"></td>-->
   <td class="px-4 py-2 text-center justify-center">
     <img src="<%= product.image.url %>" alt="<%= product.name %>" class="w-16 h-16 object-cover mt-2">
   </td>
   <td class="px-4 py-2 text-center justify-center"><%= product.name %></td>
-  <td class="px-4 py-2 text-center justify-center"><%= product.id %></td>
+  <td class="px-4 py-2 text-center justify-center min-w-10"><%= product.id %></td>
   <td class="px-4 py-2 text-center justify-center"><%= product.stock %></td>
   <% unless @category.present? %>
     <td class="px-4 py-2 text-center justify-center"><%= product.category.name %></td>
