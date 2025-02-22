@@ -1,24 +1,17 @@
-# README
+# run as Unix PWA
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+;Copy the .desktop File to the Applications Folder
+;cp FoxPos.desktop ~/.local/share/applications/
 
-Things you may want to cover:
+;Make the .desktop File Executable
+;chmod +x ~/.local/share/applications/FoxPos.desktop
 
-* Ruby version
+;Copy the .desktop File to the Desktop (Optional)
+;cp ~/.local/share/applications/FoxPos.desktop ~/Desktop/
+;chmod +x ~/Desktop/FoxPos.desktop
 
-* System dependencies
+;Ensure start_foxpos.sh is Executable
+;chmod +x start_foxpos.sh
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+;Trust & Run the Desktop Shortcut
+;gio set ~/.local/share/applications/FoxPos.desktop metadata::trusted true

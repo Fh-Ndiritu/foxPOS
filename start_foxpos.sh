@@ -15,6 +15,10 @@ if [ ! -f docker-compose.prod.yml ]; then
   exit 1
 fi
 
+# stop the running container
+echo "Stopping the running container..."
+sudo docker-compose -f docker-compose.prod.yml down
+
 # Start Docker Compose using the production configuration
 echo "Starting Docker Compose..."
 sudo docker-compose -f docker-compose.prod.yml up --build -d

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=FoxPos
+Exec=bash -c "cd /home/fh/code/playground/foxPOS && ./start_foxpos.sh && google-chrome --new-window --app=http://localhost:3000"
+Icon=/home/fh/code/playground/foxPOS/icon.png
+Terminal=true
+Categories=Utility;Application;
+StartupWMClass=FoxPos
