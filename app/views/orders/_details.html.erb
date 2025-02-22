@@ -1,7 +1,7 @@
 <%= turbo_frame_tag 'order_details', class: 'h-full' do %>
   <h2 class="text-xl my-3">Order number #<%= order.id %></h2>
   <%= turbo_frame_tag 'order_items' do %>
-    <div class="h-3/6 custom-bar overflow-y-auto p-2">
+    <div class="h-3/6 custom-bar overflow-y-auto">
       <% if order.items.any? %>
         <% order.items.each_with_index do |item, index| %>
           <%= render partial: "items/item", locals: { item: item, index: index + 1 } %>

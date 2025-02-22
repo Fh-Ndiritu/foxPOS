@@ -23,8 +23,7 @@ def progress_form(order)
     when "pending" then :kitchen
     when "kitchen" then :ready
     when "ready" then :served
-    when "served" then :payment
-    when "payment" then :complete
+    when "served" then :complete
     else nil
     end
   end
@@ -34,8 +33,7 @@ def progress_form(order)
       kitchen: "Send to Kitchen",
       ready: "Mark as Ready",
       served: "Mark as Served",
-      payment: "Mark as Paid",
-      complete: "Mark as Complete"
+      complete: "Mark as Paid"
     }[next_progress]
   end
 
@@ -44,8 +42,7 @@ def progress_form(order)
       kitchen: "btn btn-primary",
       ready: "btn btn-warning",
       served: "btn btn-info",
-      payment: "btn btn-secondary",
-      complete: "btn btn-success",
+      complete: "btn btn-success"
     }[next_progress]
   end
 end

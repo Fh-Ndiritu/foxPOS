@@ -2,7 +2,7 @@ class Order < ApplicationRecord
   has_many :items, dependent: :destroy
   has_many :products, through: :items
   default_scope { order(created_at: :desc, progress: :asc) }
-  scope :in_process, -> { where(progress: [ :kitchen, :ready, :served, :payment ]) }
+  scope :in_process, -> { where(progress: [ :kitchen, :ready, :served ]) }
 
   def recompute_cost
     subtotal =  items.sum { |item| item.quantity * item.product.price }
@@ -21,7 +21,6 @@ class Order < ApplicationRecord
     kitchen: 1,
     ready: 2,
     served: 3,
-    payment: 4,
     complete: 5
   }
 

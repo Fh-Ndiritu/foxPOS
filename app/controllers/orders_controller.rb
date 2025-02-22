@@ -29,6 +29,9 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
+    @categories = Category.active_with_active_products
+    # we return products that are already in the order
+    @products = @order.items.map(&:product)
   end
 
   # POST /orders or /orders.json
@@ -49,9 +52,6 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.items.present? && @order.update(order_params)
-        if @order.payment?
-          redirect_to show_receipt_path(@order) and return
-        end
         format.html { redirect_to orders_path, notice: "Order was successfully updated." }
         format.json { render :show, status: :ok, location: @order }
       else

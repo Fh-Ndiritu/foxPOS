@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get "receipts/show/:id" => "receipts#show", as: :show_receipt
+  get "receipts/show/:id" => "receipts#show", as: :show_receipt, defaults: { format: :pdf }
   get "receipts/print"
   resources :items
 

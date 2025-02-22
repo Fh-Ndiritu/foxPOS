@@ -1,5 +1,6 @@
 require "prawn"
 require "prawn/measurement_extensions"
+include ActionView::Helpers::NumberHelper
 
 class ReceiptsController < ApplicationController
   def show
@@ -9,7 +10,7 @@ class ReceiptsController < ApplicationController
     pdf = Prawn::Document.new(page_size: [ 227, estimated_height ], margin: 10)
 
     # Logo path (Ensure the file exists)
-    logo_path = Rails.root.join("app/assets/images/logos/ja.jpg")
+    logo_path = Rails.root.join("app/assets/images/logos/logo.jpg")
 
     # Business title and motto
     business_title = "JUICE ARENA"
@@ -17,7 +18,7 @@ class ReceiptsController < ApplicationController
     business_motto = "Taste The Difference"
 
     # Additional business details
-    additional_details = "Located at: Park Square, Ridgeways.\nFor Deliveries, Contact: 0717 840 169"
+    additional_details = "Located at: Park Square, Ridgeways.\nFor Deliveries, Contact: 0718 444 522"
 
     # Header Section
     pdf.bounding_box([ 0, pdf.bounds.top ], width: pdf.bounds.width) do
@@ -49,7 +50,7 @@ class ReceiptsController < ApplicationController
     # Table for items
     table_data = [ [ "Item", "Price", "Qty", "Value" ] ]
     order.items.each do |item|
-      table_data << [ item.name, item.price, "x#{item.quantity}", item.price ]
+      table_data << [ item.name, format_currency(item.price), "x#{item.quantity}", format_currency(item.price) ]
     end
     pdf.table(table_data, width: pdf.bounds.width - 20, header: true, cell_style: { borders: [], size: 8, padding: [ 2, 5 ] })
 
@@ -58,17 +59,24 @@ class ReceiptsController < ApplicationController
 
     # Total and Payment Information
     pdf.text "Total Paid", align: :center, size: 10, style: :bold
-    pdf.text "KES #{order.total}", align: :center, size: 12, style: :bold
+    pdf.text format_currency(order.total), align: :center, size: 12, style: :bold
 
     pdf.move_down 10
     pdf.text "-" * 35, align: :center, size: 8
 
-    pdf.text "M-PESA TILL NUMBER: 4906822", align: :center, size: 9, style: :bold
+    pdf.text "M-PESA TILL NUMBER: 4960822", align: :center, size: 9, style: :bold
 
     pdf.move_down 10
     pdf.text "Juice Arena", align: :center, size: 8
     pdf.text "Karibu Tena, God bless!", align: :center, size: 8
 
-    send_data pdf.render, filename: "receipt_#{order.id}.pdf", type: "application/pdf"
+    send_data pdf.render, filename: "Receipt_#{order.id}.pdf", type: "application/pdf"
   end
+
+
+  private
+
+ def format_currency(amount)
+  number_to_currency(amount, unit: "KES ", delimiter: ",", separator: ".")
+ end
 end

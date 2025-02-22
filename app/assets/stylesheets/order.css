@@ -2,10 +2,6 @@
   background: #e0e0e0; /* Soft gray for items in cart */
 }
 
-.orders .payment {
-  background: #f8e5c2; /* Light warm beige for payment processing */
-}
-
 .orders .kitchen {
   background: #f4c2c2; /* Muted soft red for orders being prepared */
 }
@@ -38,4 +34,9 @@
 
 .orders .action-button:hover svg path {
   fill: #5e5e5e;
+}
+
+.tabs-group .tab.active {
+  color: #5e5e5e;
+  background: #fac1d9;
 }

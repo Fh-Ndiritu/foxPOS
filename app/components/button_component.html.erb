@@ -1,7 +1,7 @@
 <% if @href.present? %>
   <!-- Render as link -->
   <a href="<%= @href %>" data-turbo-frame="<%= @data[:turbo_frame] %>"
-    class="btn flex w-full flex-col items-center  font-semibold py-2 px-8 rounded-lg  hover:bg-bg-tertiary hover:text-black text-center duration-200 <%= @classes %>">
+    class="<%= @classes %>">
     <!-- Icon -->
     <span class="mb-1 rounded-full bg-white text-4xl">
       <%= raw @svg %>
@@ -14,7 +14,7 @@
 <% else %>
   <!-- Render as button -->
   <button type="<%= @type %>"
-    class="btn flex w-full flex-col items-center font-semibold py-2 px-8 rounded-lg hover:bg-bg-tertiary text-center duration-200 <%= @classes %>">
+    class="<%= @classes %>">
     <% if @svg %>
       <!-- Icon -->
       <span class="p-2 mb-2 rounded-full bg-white">

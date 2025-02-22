@@ -1,4 +1,5 @@
-<%= turbo_frame_tag dom_id(product), class:"item-link gap-4 flex" do %>
+<!--# displays the products on order edit page below each category-->
+<%= turbo_frame_tag dom_id(product), class:"item-link flex" do %>
   <div class="item-thumbnail order-item-thumbnail rounded-lg h-40 w-40 md:h-40 lg:h-40 text-normal text-white duration-200 bg-bg-secondary  #{@classes} custom-bar ">
     <div class="thumbnail-content ">
       <!-- Image in top-right corner -->
@@ -12,7 +13,7 @@
       <div class="text-container">
         <div class="item-title text-sm font-semibold line-clamp-1 mb-1"><%= product.name %></div>
         <div class="item-title text-xs font-normal line-clamp-1 text-text-tertiary"><%= number_to_currency(product.price, unit: 'Kes') %></div>
-        <div class="quantity flex justify-end">
+        <div class="quantity flex justify-end mb-1 mt-2">
           <!-- Subtract Button -->
           <%= form_with url: items_path, method: :post, local: true do |f| %>
             <%= f.hidden_field :product_id, value: product.id %>

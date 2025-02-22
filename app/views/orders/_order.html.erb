@@ -2,6 +2,9 @@
   <div class="bg-bg-secondary p-4 rounded-lg text-white block">
     <div class="flex w-full items-center justify-between pb-4">
       <span>Order #<%= order.id %></span>
+      <% if order.served? %>
+        <%= link_to "Print Receipt", show_receipt_path(order, format: :pdf), target: "_blank", class: "rounded-lg px-4 py-2 bg-bg-ternary text-primary " %>
+      <% end %>
       <div class="rounded-lg px-4 py-2  text-text-secondary <%= order.progress %>">
         <%= order.progress %>
       </div>
@@ -31,11 +34,14 @@
       </table>
     </div>
     <div>
+
       <div class="flex w-full justify-between py-3">
         <span>SubTotal</span>
         <span><%= number_with_precision(order.subtotal, precision: 2) %></span>
       </div>
+
     </div>
+
     <div class="flex w-full justify-between">
       <!--Icons will be here-->
       <div class="flex">
@@ -70,10 +76,10 @@
         <%= form_with model: order, data: {turbo: false} do |f| %>
           <button type="submit"
           name="order[progress]"
-          value="payment"
+          value="complete"
           class="btn flex items-center font-semibold rounded-lg text-center duration-200 bg-bg-tertiary px-4 py-2 hover:bg-bg-ternary max-w-60 text-gray-900 hover:text-white cursor-pointer"
           >
-            Print Receipt
+          Set Paid
           </button>
         <% end %>
       <% end %>
