@@ -27,7 +27,7 @@
       <% end %>
     <% end %>
   </div>
-  <div class=" bg-[#292C2D] w-4/12 lg:3/12 h-full justify-center px-4 py-6 text-white rounded-lg oveflor-hidden">
+  <div class=" bg-[#292C2D] w-4/12 lg:w-3/12 h-full justify-center px-4 py-6 text-white rounded-lg oveflor-hidden">
     <div class="h-full">
       <%= turbo_frame_tag 'order_details' do %>
         <%= render partial: 'details', locals: { order: @order } %>
