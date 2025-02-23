@@ -3,6 +3,13 @@
 FoxPos is a Rails Point of Sale application built on ViewComponent, Turbo and Stimulus.
 This has been tweaked to run locally on production mode.
 
+### Current features
+1. Add and manage categories
+2. Add and manage products
+3. Take orders, send to kitchen
+4. Serve orders, take payments
+5. Print receipts
+
 ## Before you install
 
 Ensure you have [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) installed.
