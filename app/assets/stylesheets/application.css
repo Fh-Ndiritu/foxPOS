@@ -20,6 +20,14 @@ select option {
   color: white !important;
 }
 
+.devise input,
+.devise textarea,
+.devise select,
+.devise select option {
+  background: #d1d1d1 !important;
+  color: darkslategray !important;
+}
+
 input:focus,
 textarea:focus,
 select option:hover {
