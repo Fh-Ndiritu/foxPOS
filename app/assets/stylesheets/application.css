@@ -20,6 +20,14 @@ select option {
   color: white !important;
 }
 
+.devise input,
+.devise textarea,
+.devise select,
+.devise select option {
+  background: #d1d1d1 !important;
+  color: darkslategray !important;
+}
+
 input:focus,
 textarea:focus,
 select option:hover {
@@ -53,7 +61,8 @@ select option:hover {
   color: #065f46; /* Dark green */
 }
 
-.flash-message.error {
+.flash-message.error,
+.flash-message.alert {
   background-color: #fee2e2; /* Light red */
   color: #b91c1c; /* Dark red */
 }
