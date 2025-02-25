@@ -53,7 +53,8 @@ select option:hover {
   color: #065f46; /* Dark green */
 }
 
-.flash-message.error {
+.flash-message.error,
+.flash-message.alert {
   background-color: #fee2e2; /* Light red */
   color: #b91c1c; /* Dark red */
 }
