@@ -52,7 +52,7 @@ group :development, :test do
   gem "pry-byebug" # Debugging with Pry
   gem "pry-rails" # Integrate Pry with Rails console
   gem "erb_lint" # Lint ERB files
-  gem "rubocop", "~> 1.72" # Ruby static code analyzer
+  gem "rubocop", "~> 1.73" # Ruby static code analyzer
   gem "rubocop-rails" # Rails-specific Rubocop rules
 end
 
