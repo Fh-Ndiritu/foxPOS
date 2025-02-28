@@ -1,9 +1,9 @@
 class SetInitialIdValue < ActiveRecord::Migration[6.1]
   def up
-    execute "UPDATE sqlite_sequence SET seq = 999999999 WHERE name = 'products'"
+    execute "ALTER SEQUENCE products_id_seq RESTART WITH 999999999"
   end
 
   def down
-    execute "UPDATE sqlite_sequence SET seq = 1 WHERE name = 'products'"
+    execute "ALTER SEQUENCE products_id_seq RESTART WITH 1"
   end
 end

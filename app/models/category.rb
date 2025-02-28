@@ -9,9 +9,7 @@ class Category < ApplicationRecord
   scope :inactive, -> { where(active: false) }
   scope :active, -> { where(active: true) }
 
-  scope :active_with_active_products, -> {
-    active.joins(:products)
-    .merge(Product.active_and_available)
-    .distinct
-  }
+scope :active_with_active_products, -> {
+  active.select { |category| category.products.active_and_available.any? }
+}
 end
