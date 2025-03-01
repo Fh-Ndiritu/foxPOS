@@ -17,4 +17,5 @@ class ApplicationController < ActionController::Base
 
     render "layouts/flash" # This will render the flash Turbo Stream
   end
+
 end
