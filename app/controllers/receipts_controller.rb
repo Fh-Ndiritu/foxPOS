@@ -14,11 +14,11 @@ class ReceiptsController < ApplicationController
 
     # Business title and motto
     business_title = "JUICE ARENA"
-    business_subtitle = "Juices, Shakes & Icecream"
-    business_motto = "Taste The Difference"
+    business_subtitle = "Juices, Shakes & Cream"
+    business_motto = "Taste The Difference!"
 
     # Additional business details
-    additional_details = "Located at: Park Square, Ridgeways.\nFor Deliveries, Contact: 0718 444 522"
+    additional_details = "Located at: 9 Park Square, Ridgeways.\nFor Deliveries, Contact: 0718 444 522"
 
     # Header Section
     pdf.bounding_box([ 0, pdf.bounds.top ], width: pdf.bounds.width) do
