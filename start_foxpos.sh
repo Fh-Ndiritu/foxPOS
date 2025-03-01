@@ -21,11 +21,11 @@ sudo docker-compose -f docker-compose.prod.yml down
 
 # Start Docker Compose using the production configuration
 echo "Starting Docker Compose..."
-sudo docker-compose -f docker-compose.prod.yml up --build -d
+docker-compose -f docker-compose.prod.yml --env-file .env  up --build -d
 
 # Wait for the application to start (adjust the sleep time if necessary)
 echo "Waiting for the application to start..."
-sleep 10
+sleep 15
 
 # Debug: Check if the application is running
 echo "Checking if the application is running..."
