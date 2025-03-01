@@ -24,7 +24,7 @@ FROM base AS build
 
 # Install packages needed to build gems
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git pkg-config && \
+    apt-get install --no-install-recommends -y build-essential git libpq-dev pkg-config postgresql-client && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Install application gems
@@ -45,6 +45,11 @@ RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 # Final stage for app image
 FROM base
 
+# Install libpq-dev in the final stage
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y libpq-dev && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
 # Copy built artifacts: gems, application
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --from=build /rails /rails
@@ -61,3 +66,14 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 # Start server via Puma by default, this can be overwritten at runtime
 EXPOSE 3000
 CMD ["./bin/rails", "server", "-b", "0.0.0.0", "-p", "3000"]
+
+
+# DATABASE_URL="postgres://postgres:password@localhost/foxpos_development"
+# Remove unused docker images
+# docker image prune -a
+
+
+# Fresh rebuild
+# docker-compose -f docker-compose.prod.yml down --volumes --remove-orphans
+# docker-compose -f docker-compose.prod.yml build --no-cache
+# docker-compose -f docker-compose.prod.yml up --build

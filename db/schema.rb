@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_23_143854) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_22_153612) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -49,8 +52,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_23_143854) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer "order_id", null: false
-    t.integer "product_id", null: false
+    t.bigint "order_id", null: false
+    t.bigint "product_id", null: false
     t.integer "quantity", default: 1, null: false
     t.integer "price"
     t.datetime "created_at", null: false
@@ -77,7 +80,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_23_143854) do
     t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "category_id", null: false
+    t.bigint "category_id", null: false
     t.string "size", default: "Small"
     t.integer "stock", default: 10
     t.integer "availability", default: 1
