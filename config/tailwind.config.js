@@ -1,7 +1,7 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-content: [
+  content: [
     "./app/**/*.html.erb",
     "./app/**/*.html",
     "./app/helpers/**/*.rb",
@@ -19,7 +19,7 @@ content: [
         'text-tertiary': '#FAC1D9',
         'bg-tertiary': '#FAC1D9',
         'bg-secondary': '#292C2D',
-        'bg-primary': '3D4142',
+        'bg-primary': '#3D4142',  // Fixed missing '#'
         'bg-ternary': '#5E5E5E',
         'text-secondary': '#333333',
         'text-primary': '#ffffff'
@@ -27,8 +27,9 @@ content: [
     },
   },
   plugins: [
+    // Uncomment if you are using these plugins
     // require('@tailwindcss/forms'),
     // require('@tailwindcss/typography'),
     // require('@tailwindcss/container-queries'),
-  ]
-}
+  ],
+};
