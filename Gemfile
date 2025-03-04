@@ -41,7 +41,7 @@ group :development, :test do
   gem "factory_bot_rails" # Test data generation
   gem "faker", "~> 3.3" # Generate fake data
   gem "rubocop-rails-omakase", require: false # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
-  gem "rubocop-discourse", "~> 3.0"
+  gem "rubocop-discourse", "~> 3.11"
   gem "rubocop-packaging"
   gem "rubocop-performance"
   gem "rubocop-rails-accessibility"
