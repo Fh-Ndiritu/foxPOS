@@ -26,18 +26,17 @@
         <%#= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
       </div>
 
-
-      <div class="w-full p-2">
-        <%= link_to "Forgot Password?", new_user_password_path, class:"text-underline text-text-tertiary"%>
-      </div>
-
-      <div class="form-actions flex justify-center">
+      <div class="form-actions flex justify-center pt-2 pb-4">
         <%= render(ButtonComponent.new(
           text: 'Login',
           type: 'submit',
           classes: 'bg-bg-tertiary px-4 py-2 hover:bg-bg-secondary max-w-40 text-gray-900 hover:text-white'
           )
         ) %>
+      </div>
+
+      <div class="w-full pt-6">
+        <%= link_to "Forgot Password?", new_user_password_path, class:"text-underline text-text-tertiary"%>
       </div>
     <% end %>
    </div>
