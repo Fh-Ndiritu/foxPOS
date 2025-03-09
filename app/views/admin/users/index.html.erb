@@ -1,0 +1,53 @@
+<% content_for :body_class, "" %>
+<% content_for :title, "Menu" %>
+<%= turbo_stream_from 'categories' %>
+<%= turbo_stream_from 'products' %>
+<div class="sidebar-left bg-[#292C2D] w-3/12 lg:w-2/12 h-full rounded-tr-3xl rounded-br-3xl py-6 justify-center">
+  <%= render('shared/sidebar_left') %>
+</div>
+<div class="main-section w-9/12 lg:w-10/12 pl-4 h-screen overflow-y-scroll custom-bar ">
+  <div class=" w-full justify-between inline-flex items-center" style="height: 10vh">
+    <h1 class="text-2xl font-semibold text-white my-2">Staff (<%= @users.count %>)</h1>
+    <%= render(ButtonComponent.new(
+      text: 'Add Staff',
+      classes: 'bg-bg-tertiary px-4 py-2 hover:bg-bg-secondary max-w-40 text-gray-900 hover:text-white',
+      href: new_admin_user_path,
+      data: { turbo_frame:'new_staff'}
+      )
+      ) %>
+  </div>
+<div id="staff" class="min-w-full rounded">
+    <div class="rounded-lg p-4 bg-[#565E60] overflow-y-auto custom-bar" style="max-height: 600px">
+      <div class="rounded-lg overflow-x-auto pb-6 flex gap-4 h-full bg-gray-400 custom-bar">
+        <% if @users.any? %>
+          <table class="min-w-full rounded-lg overflow-hidden text-white items-center table-fixed text-left">
+          <thead class="py-4">
+            <tr class="text-sm">
+              <th class="px-4 py-2 md:min-w-20">ID</th>
+              <th class="px-4 py-2 md:min-w-20">Name</th>
+              <th class="px-4 py-2 md:min-w-20 ">Email</th>
+              <th class="px-4 py-2 md:min-w-20">Phone</th>
+              <th class="px-4 py-2 md:min-w-20">Age</th>
+              <th class="px-4 py-2 md:min-w-20">Salary</th>
+              <th class="px-4 py-2 md:min-w-20">Timings</th>
+              <th class="px-4 py-2 md:min-w-20">Actions</th>
+            </tr>
+          </thead>
+            <tbody>
+              <% @users.each do |user| %>
+                <%= render user %>
+              <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <p class=" my-10 text-white w-full text-center">No staff found.</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+
+
+<%= turbo_frame_tag "edit_user" %>

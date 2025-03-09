@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :users
+  end
+
   devise_for :users
   get "receipts/show/:id" => "receipts#show", as: :show_receipt, defaults: { format: :pdf }
   get "receipts/print"

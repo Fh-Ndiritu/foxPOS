@@ -18,11 +18,12 @@
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   </head>
   <body
   class="bg-[#1E1E1E] h-screen w-screen overflow-hidden <%= content_for?(:body_class) ? yield(:body_class) : "#{controller_name} #{action_name}" %>">
     <div id="flash"> <%= render "shared/flash" %></div>
-    <main class="w-screen h-screen">
+    <main class="w-screen h-screen" data-controler="image-preview">
       <div class="flex w-full h-full ">
         <%= yield %>
       </div>

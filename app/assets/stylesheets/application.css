@@ -12,11 +12,26 @@
 @tailwind components;
 @tailwind utilities;
 
-input,
-textarea,
-select,
-select option {
-  background: #5e5e5e !important;
+.dark-form input,
+.dark-form textarea,
+.dark-form select,
+.dark-form select option {
+  background: #3d4142 !important;
+  padding: 15px !important;
+  color: white !important;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  margin-top: 0.6rem;
+  &::placeholder {
+    color: #777979 !important;
+  }
+}
+
+.dark-form input:focus,
+.dark-form textarea:focus,
+.dark-form select option:hover {
+  background: #66575d !important;
   color: white !important;
 }
 
@@ -24,15 +39,8 @@ select option {
 .devise textarea,
 .devise select,
 .devise select option {
-  background: #d1d1d1 !important;
-  color: darkslategray !important;
-}
-
-input:focus,
-textarea:focus,
-select option:hover {
-  background: #5b4850 !important;
-  color: white !important;
+  background: #d1d1d1;
+  color: darkslategray;
 }
 
 #flash {
