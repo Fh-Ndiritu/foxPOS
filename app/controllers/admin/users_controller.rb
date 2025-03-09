@@ -3,14 +3,25 @@ class Admin::UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
 
   def index
-    # @users = User.where.not(id: current_user.id)
-    @users = User.all
+    @users = current_user.manageable_users
   end
 
   def edit
   end
 
+  def create
+    password = SecureRandom.hex(8)
+    @user = User.new(user_params.merge(password: password))
+    if @user.save
+      redirect_to admin_user_path(@user), notice: 'User created'
+    else
+      render :new
+    end
+
+  end
+
   def new
+    @user = User.new
   end
 
   def show
@@ -25,7 +36,8 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-
+    @user.update hidden: true
+    redirect_to admin_users_path, notice: 'User deleted'
   end
 
 

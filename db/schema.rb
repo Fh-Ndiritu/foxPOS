@@ -96,13 +96,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_09_095321) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "role"
+    t.integer "role", default: 2
     t.string "full_name"
     t.string "phone"
     t.date "birth_date", default: "2000-01-01"
     t.integer "salary"
     t.time "shift_start", default: "2000-01-01 08:00:00"
     t.time "shift_end", default: "2000-01-01 21:00:00"
+    t.boolean "hidden", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -1,7 +1,7 @@
 <tr class="hover:bg-[#565E60] <%= user.id.even? ? 'bg-bg-secondary': 'bg-bg-primary' %> items-center justify-center text-left" id="<%= dom_id user %>">
- <td class="px-4 py-2 text-center justify-center h-full "><%= user.id %></td>
-  <td class="px-4 py-2 flex items-center justify-center  h-full gap-2">
-    <div class="w-10 h-10 rounded-full overflow-hidden items-center">
+ <td class="px-4 py-2 justify-center h-full "><%= user.id %></td>
+  <td class="px-4 py-2 flex items-center justify-center  h-full gap-2 justify-start">
+    <div class="w-10 h-10 rounded-full overflow-hidden items-center ">
        <% if user.avatar.attached? %>
         <%= image_tag user.avatar.variant(:icon) %>
     <% else %>
@@ -13,14 +13,14 @@
       <span class="text-xs text-text-tertiary m-0"><%= user.role.capitalize %></span>
     </div>
   </td>
-  <td class="px-4 py-2 text-center justify-center h-full  min-w-10"><%= user.email%></td>
-  <td class="px-4 py-2 text-center justify-center h-full  min-w-10"><%= user.phone%></td>
-  <td class="px-4 py-2 text-center justify-center h-full "><%= user.age %></td>
-  <td class="px-4 py-2 text-center justify-center h-full "><%= user.salary %></td>
-  <td class="px-4 py-2 text-center justify-center h-full "><%= shift_period(user) %></td>
-  <td class="px-4 py-2 text-center justify-center h-full   ">
+  <td class="px-4 py-2 justify-center h-full  min-w-10"><%= user.email%></td>
+  <td class="px-4 py-2 justify-center h-full  min-w-10"><%= user.phone%></td>
+  <td class="px-4 py-2 justify-center h-full "><%= user.age %></td>
+  <td class="px-4 py-2 justify-center h-full "><%= user.salary %></td>
+  <td class="px-4 py-2 justify-center h-full "><%= shift_period(user) %></td>
+  <td class="px-4 py-2 justify-center h-full   ">
    <div class="flex gap-4">
-     <%= link_to new_admin_user_path, data: {turbo_frame: 'edit_staff'} do %>
+     <%= link_to admin_user_path(user), data: {turbo_frame: 'edit_staff'} do %>
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="11" cy="11" r="11" fill="#FAC1D9"/>
         <path d="M10.9987 9.25C10.5346 9.25 10.0894 9.43437 9.76126 9.76256C9.43307 10.0908 9.2487 10.5359 9.2487 11C9.2487 11.4641 9.43307 11.9092 9.76126 12.2374C10.0894 12.5656 10.5346 12.75 10.9987 12.75C11.4628 12.75 11.9079 12.5656 12.2361 12.2374C12.5643 11.9092 12.7487 11.4641 12.7487 11C12.7487 10.5359 12.5643 10.0908 12.2361 9.76256C11.9079 9.43437 11.4628 9.25 10.9987 9.25ZM10.9987 13.9167C10.2252 13.9167 9.48328 13.6094 8.9363 13.0624C8.38932 12.5154 8.08203 11.7735 8.08203 11C8.08203 10.2265 8.38932 9.48459 8.9363 8.93761C9.48328 8.39062 10.2252 8.08333 10.9987 8.08333C11.7722 8.08333 12.5141 8.39062 13.0611 8.93761C13.6081 9.48459 13.9154 10.2265 13.9154 11C13.9154 11.7735 13.6081 12.5154 13.0611 13.0624C12.5141 13.6094 11.7722 13.9167 10.9987 13.9167ZM10.9987 6.625C8.08203 6.625 5.5912 8.43917 4.58203 11C5.5912 13.5608 8.08203 15.375 10.9987 15.375C13.9154 15.375 16.4062 13.5608 17.4154 11C16.4062 8.43917 13.9154 6.625 10.9987 6.625Z" fill="#333333"/>
@@ -31,7 +31,7 @@
         <path d="M3.66406 15.9572V18.0591C3.66406 18.1807 3.71235 18.2972 3.79831 18.3832C3.88426 18.4692 4.00084 18.5174 4.1224 18.5174H6.2289C6.35022 18.5174 6.46658 18.4693 6.55248 18.3836L15.2131 9.72294L12.4631 6.97294L3.79881 15.6336C3.7128 15.7194 3.66433 15.8357 3.66406 15.9572ZM13.598 5.83719L16.348 8.58719L17.6863 7.24886C17.8582 7.07696 17.9547 6.84384 17.9547 6.60077C17.9547 6.35771 17.8582 6.12459 17.6863 5.95269L16.2334 4.49886C16.0615 4.32701 15.8284 4.23047 15.5853 4.23047C15.3422 4.23047 15.1091 4.32701 14.9372 4.49886L13.598 5.83719Z" fill="white"/>
       </svg>
     <% end %>
-    <%= button_to new_admin_user_path(user), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: "text-red-500 hover:text-red-700 flex items-center" do %>
+    <%= button_to admin_user_path(user), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: "text-red-500 hover:text-red-700 flex items-center" do %>
       <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M2.97911 14.5183C2.55745 14.5183 2.20545 14.3772 1.92311 14.0948C1.64017 13.8119 1.4987 13.4596 1.4987 13.0379V1.685H0.582031V0.768333H4.2487V0.0625H9.7487V0.768333H13.4154V1.685H12.4987V13.0379C12.4987 13.4596 12.3575 13.8116 12.0752 14.0939C11.7923 14.3769 11.4399 14.5183 11.0183 14.5183H2.97911ZM4.98936 11.7683H5.90603V3.51833H4.98936V11.7683ZM8.09137 11.7683H9.00803V3.51833H8.09137V11.7683Z" fill="#E70000"/>
       </svg>

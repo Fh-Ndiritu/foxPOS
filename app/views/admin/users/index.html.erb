@@ -12,7 +12,7 @@
       text: 'Add Staff',
       classes: 'bg-bg-tertiary px-4 py-2 hover:bg-bg-secondary max-w-40 text-gray-900 hover:text-white',
       href: new_admin_user_path,
-      data: { turbo_frame:'new_staff'}
+      data: { turbo_frame:'new_user'}
       )
       ) %>
   </div>
@@ -49,5 +49,5 @@
 </div>
 </div>
 
-
 <%= turbo_frame_tag "edit_user" %>
+<%= turbo_frame_tag "new_user" %>
