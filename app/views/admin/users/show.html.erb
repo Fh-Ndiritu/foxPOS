@@ -32,6 +32,7 @@
         <div>
             <%= render(ButtonComponent.new(
               text: 'Edit Profile',
+              data: { turbo_frame: 'edit_user' },
               classes: 'bg-bg-tertiary px-4 py-4 transition duration-300 hover:bg-transparent hover:border hover:border-border-tertiary w-full text-gray-900 hover:text-text-tertiary rounded my-4',
               href: edit_admin_user_path(@user)
               )
@@ -69,3 +70,6 @@
 
 
 </div>
+
+<%= turbo_frame_tag 'edit_user' do %>
+<% end %>
