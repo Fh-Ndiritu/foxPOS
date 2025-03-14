@@ -12,16 +12,17 @@
 
 
   <!--We display a preview of the avatar-->
-  <div class="pt-4 items-center justify-center"  data-controller="user-controller">
+  <div class="pt-4 items-center justify-center"  data-controller="image-preview">
     <div >
-      <div class="w-40 h-40 rounded overflow-hidden" data-image-preview-target="preview">
+      <div class="w-40 h-40 rounded overflow-hidden">
       <% if user.avatar.attached? && user.persisted? %>
-        <%= image_tag user.avatar.variant(:thumb), class: "w-full h-full object-cover" %>
+        <%= image_tag user.avatar.variant(:thumb), class: "w-full h-full object-cover", data: { image_preview_target: 'preview'} %>
       <% else %>
-       <%= image_tag asset_path("avatar.png") %>
+       <%= image_tag asset_path("avatar.png"), data: { image_preview_target: 'preview'} %>
       <% end %>
     </div>
-    <div>
+    <p class="underline text-text-tertiary cursor-pointer my-2" data-image-preview-target="inputTrigger">Change profile picture</p>
+    <div class="hidden">
       <%= form.input :avatar, as: :file, label: "Avatar",
         label_html: { class: "text-white" },
         input_html: { class: "block w-full", accept: "image/*", data: { image_preview_target: 'input' } }
