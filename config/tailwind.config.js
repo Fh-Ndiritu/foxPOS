@@ -22,7 +22,8 @@ module.exports = {
         'bg-primary': '#3D4142',  // Fixed missing '#'
         'bg-ternary': '#5E5E5E',
         'text-secondary': '#333333',
-        'text-primary': '#ffffff'
+        'text-primary': '#ffffff',
+        'border-tertiary': '#FAC1D9',
       }
     },
   },

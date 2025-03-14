@@ -1,0 +1,45 @@
+<div class="flex w-full justify-between items-center py-6">
+  <div class="flex items-center gap-4">
+     <%= link_to @return_path ? @return_path : root_path do %>
+          <span class="cursor-pointer close">
+           <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="17.8301" cy="17.83" r="17.83" transform="rotate(90 17.8301 17.83)" fill="#292C2D"/>
+              <path d="M20.0586 13.3711L15.6011 17.8286L20.0586 22.2861" stroke="white" stroke-width="1.11438" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+
+          </span>
+        <% end %>
+    <h1 class="font-semibold text-2xl"><%= @heading_content %></h1>
+  </div>
+
+  <div class="flex items-center justify-between gap-4">
+
+  <!--notifications-->
+  <div>
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10.7447 14.036C10.7448 14.4503 10.5882 14.8493 10.3062 15.1531C10.0243 15.4569 9.6378 15.6429 9.2243 15.674L9.10103 15.6781H7.45741C7.04274 15.6782 6.64335 15.5218 6.33929 15.2401C6.03524 14.9584 5.84899 14.5723 5.81789 14.1592L5.81378 14.036H10.7447ZM8.27922 0.078125C9.77079 0.0781004 11.2041 0.656879 12.2767 1.69237C13.3493 2.72787 13.9775 4.13912 14.0286 5.62844L14.0319 5.82549V8.91593L15.5292 11.9078C15.5946 12.0384 15.6273 12.1828 15.6246 12.3287C15.6218 12.4747 15.5837 12.6178 15.5135 12.7458C15.4433 12.8738 15.3431 12.9829 15.2215 13.0637C15.0998 13.1446 14.9604 13.1948 14.8151 13.21L14.7206 13.215H1.83785C1.69171 13.215 1.54773 13.1796 1.41825 13.1119C1.28878 13.0442 1.17768 12.9461 1.09446 12.8261C1.01124 12.706 0.95839 12.5676 0.940439 12.4227C0.922488 12.2778 0.93997 12.1307 0.991388 11.9941L1.02919 11.9078L2.52653 8.91593V5.82549C2.52653 4.30119 3.13262 2.83933 4.21146 1.76149C5.29029 0.683649 6.75351 0.078125 8.27922 0.078125Z" fill="white"/>
+    </svg>
+  </div>
+
+    <svg width="1" height="23" viewBox="0 0 1 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0.566406 0.289062L0.566407 22.5766" stroke="white" stroke-width="0.742918"/>
+    </svg>
+
+    <!--profile management-->
+    <div>
+
+    <div class="w-10 h-10 rounded-full overflow-hidden items-center border border-border-tertiary border-2">
+      <% if @current_user.avatar.attached? %>
+          <%= image_tag @current_user.avatar.variant(:icon) %>
+      <% else %>
+        <%= image_tag asset_path("avatar.png") %>
+      <% end %>
+    </div>
+
+    </div>
+
+
+  </div>
+
+
+</div>

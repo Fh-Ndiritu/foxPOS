@@ -1,0 +1,14 @@
+<div class="rounded-2xl bg-bg-primary px-6 py-4 <%= @classes %>">
+
+<div class="grid gap-4 py-8  <%= @item_classes %>">
+  <% fields.each do |key, value| %>
+  <div class=" justify-between py-2">
+    <p class="font-semibold text-text-tertiary text-base"><%= key.to_s.humanize %></p>
+    <p class="text-white font-normal"><%= value %></p>
+  </div>
+
+<% end %>
+</div>
+
+
+</div>

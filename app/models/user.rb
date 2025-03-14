@@ -27,5 +27,10 @@ class User < ApplicationRecord
     now.year - birth_date.year - (now.month > birth_date.month || (now.month == birth_date.month && now.day >= birth_date.day) ? 0 : 1)
   end
 
+  def orders
+    # TODO ensure orders belong to user
+    [1]*rand(1..10)
+  end
+
 
 end
