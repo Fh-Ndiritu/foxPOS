@@ -6,8 +6,8 @@ class User < ApplicationRecord
 
   enum :role, { super_admin: 0, admin: 1, manager: 2, staff: 3 }
   has_one_attached :avatar do |attachable|
-    attachable.variant :icon, resize_to_fill: [64, 64]
-    attachable.variant :thumb, resize_to_fill: [256, 256]
+    attachable.variant :icon, resize_to_fill: [ 64, 64 ]
+    attachable.variant :thumb, resize_to_fill: [ 256, 256 ]
   end
 
   default_scope { where(hidden: false).order(role: :asc) }
@@ -17,7 +17,7 @@ class User < ApplicationRecord
   end
 
   def manageable_users
-    User.where('role > ?', role_before_type_cast)
+    User.where("role > ?", role_before_type_cast)
   end
 
   def age
@@ -29,8 +29,24 @@ class User < ApplicationRecord
 
   def orders
     # TODO ensure orders belong to user
-    [1]*rand(1..10)
+    [ 1 ]*rand(1..10)
   end
 
 
+  def generate_reset_password_token
+    raw_token, encrypted_token = Devise.token_generator.generate(self.class, :reset_password_token)
+    update!(
+      reset_password_token: encrypted_token,
+      reset_password_sent_at: Time.now
+    )
+    raw_token
+  end
+
+  def reset_password_token_valid?
+    reset_password_sent_at.present? && reset_password_sent_at > Devise.reset_password_within.ago
+  end
+
+  def invalidate_old_tokens
+    update!(reset_password_sent_at: nil, reset_password_token: nil)
+  end
 end

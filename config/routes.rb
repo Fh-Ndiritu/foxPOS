@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   namespace :admin do
     resources :users
+    get "generate_reset_password_token/:id" => "users#generate_reset_password_token", as: :generate_reset_password_token
   end
+
 
   devise_for :users
   get "receipts/show/:id" => "receipts#show", as: :show_receipt, defaults: { format: :pdf }

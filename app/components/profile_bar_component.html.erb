@@ -28,13 +28,15 @@
     <!--profile management-->
     <div>
 
+    <%= link_to admin_user_path(current_user) do %>
     <div class="w-10 h-10 rounded-full overflow-hidden items-center border border-border-tertiary border-2">
       <% if @current_user.avatar.attached? %>
-          <%= image_tag @current_user.avatar.variant(:icon) %>
+        <%= image_tag @current_user.avatar.variant(:icon) %>
       <% else %>
         <%= image_tag asset_path("avatar.png") %>
       <% end %>
     </div>
+    <% end%>
 
     </div>
 

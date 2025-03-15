@@ -23,6 +23,10 @@
   <body
   class="bg-[#1E1E1E] h-screen text-text-primary w-screen overflow-hidden <%= content_for?(:body_class) ? yield(:body_class) : "#{controller_name} #{action_name}" %>">
     <div id="flash"> <%= render "shared/flash" %></div>
+      <!--# show traditional flash messages for devise-->
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+
     <main class="w-screen h-screen">
       <div class="flex w-full h-full ">
         <%= yield %>

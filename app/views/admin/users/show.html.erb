@@ -10,7 +10,7 @@
 
   <div class="pr-8">
     <%= render(ProfileBarComponent.new(
-      heading_content: @user.full_name,
+      heading_content: "Showing #{@user.full_name}",
       current_user: current_user,
       return_path: admin_users_path
     )) %>
@@ -19,7 +19,7 @@
   <div class="flex w-full gap-8 pr-8">
     <div class="w-2/6">
       <div class="max-w-[350px]">
-        <%= content_tag :h2, "Profile Image", class: "font-semibold my-6 text-2xl" %>
+        <%= content_tag :h2, "Profile Image", class: "font-semibold mt-8 mb-4 text-2xl" %>
 
         <div class="w-full h-[350px] rounded overflow-hidden my-4">
           <% if @user.avatar.attached?%>
@@ -50,7 +50,7 @@
 
 
     <div class="w-4/6">
-      <%= content_tag :h2, "Employee Personal Details", class: "font-semibold my-6 text-2xl" %>
+      <%= content_tag :h2, "Employee Personal Details", class: "font-semibold mt-8 mb-4 text-2xl" %>
       <%= render(CardComponent.new(
         fields: personal_details(@user),
         classes: '',
@@ -58,12 +58,15 @@
       )) %>
 
 
-      <%= content_tag :h2, "Employee Job Details", class: "font-semibold my-6 text-2xl" %>
+      <%= content_tag :h2, "Employee Job Details", class: "font-semibold mt-8 mb-4 text-2xl" %>
       <%= render(CardComponent.new(
         fields:job_details(@user),
         classes: '',
         item_classes: ''
       )) %>
+
+      <%= render 'admin/users/password_management'%>
+
     </div>
 
   </div>
