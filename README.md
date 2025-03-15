@@ -1,6 +1,10 @@
 ## Introduction
 
-FoxPos is a Rails Point of Sale application built on ViewComponent, Turbo and Stimulus.
+FoxPos is a Rails Point of Sale application built on ViewComponent, Turbo and Stimulus.  
+There's definitely a need for better, robust and lean POS systems today in the opensource pool.  
+FoxPOS does exactly that. This was originally designed for an icecream shop so some features might not be dynamic yet.  
+This is business driven development, I build more modules as the current clients require. 
+It should also be easy to run on any OS, offline and on the web.
 This has been tweaked to run locally on production mode.
 
 ### Current features
