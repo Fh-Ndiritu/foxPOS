@@ -41,7 +41,6 @@ class Admin::UsersController < ApplicationController
 
   def show
   end
-
   def update
     if @user.update(user_params)
       respond_to do |format|
