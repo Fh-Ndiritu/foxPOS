@@ -10,15 +10,32 @@ class User < ApplicationRecord
     attachable.variant :thumb, resize_to_fill: [ 256, 256 ]
   end
 
+  validates :full_name, presence: true
+  validates :avatar, content_type: [ "image/png", "image/heic", "image/jpeg", "image/webp", "image/heif" ], if: -> { avatar.attached? }
+  validates :avatar, size: { less_than: 3.megabytes, message: "is too big" }, if: -> { avatar.attached? }
+
+
   default_scope { where(hidden: false).order(role: :asc) }
 
-  def can_manage?
-    super_admin? || admin?
+  def management?
+    super_admin? || admin? || manager?
+  end
+
+   def manageable?(current_user)
+    return true if current_user.super_admin?
+    role_before_type_cast > current_user.role_before_type_cast
   end
 
   def manageable_users
-    User.where("role > ?", role_before_type_cast)
+    self.class.where(role: manageable_roles.keys).where.not(id: id)
   end
+
+  def manageable_roles
+    return self.class.roles if super_admin?
+
+    self.class.roles.select { |name, value| value > role_before_type_cast }
+  end
+
 
   def age
     return unless birth_date.present?
@@ -42,11 +59,11 @@ class User < ApplicationRecord
     raw_token
   end
 
-  def reset_password_token_valid?
-    reset_password_sent_at.present? && reset_password_sent_at > Devise.reset_password_within.ago
-  end
+  private
 
-  def invalidate_old_tokens
-    update!(reset_password_sent_at: nil, reset_password_token: nil)
+  def avatar_format
+    return if !avatar.attached? || avatar.blob.content_type.start_with?("image/")
+
+    errors.add(:avatar, "must be an image")
   end
 end

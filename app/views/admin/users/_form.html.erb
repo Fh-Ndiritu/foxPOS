@@ -1,4 +1,4 @@
-<%= simple_form_for user, url:,  html: { class: "dark-form" } do |form| %>
+<%= simple_form_for user, url:,  html: { class: "dark-form" }, data: { turbo: } do |form| %>
   <% if user.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-4 py-3 font-medium rounded-lg">
       <h2 class="text-lg font-semibold"><%= pluralize(user.errors.count, "error") %> prevented this user from being saved:</h2>
@@ -25,7 +25,7 @@
     <div class="hidden">
       <%= form.input :avatar, as: :file, label: "Avatar",
         label_html: { class: "text-white" },
-        input_html: { class: "block w-full", accept: "image/*", data: { image_preview_target: 'input' } }
+        input_html: { class: "block w-full", type: "file", accept: "image/*", data: { image_preview_target: 'input' } }
        %>
     </div>
   </div>
@@ -49,7 +49,7 @@
 
     <div class="">
       <%= form.input :role, as: :select, label: "Role",
-        collection: User.roles.keys.map { |k| [k.humanize, k] },
+        collection: current_user.manageable_roles.keys.map { |k| [k.humanize, k] },
         label_html: { class: "text-white" },
         input_html: { class: "block w-full" },
         selected: user.role %>

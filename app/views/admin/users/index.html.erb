@@ -16,7 +16,7 @@
       )
       ) %>
   </div>
-<div id="staff" class="min-w-full rounded">
+<div class="min-w-full rounded">
     <div class="rounded-lg p-4 bg-[#565E60] overflow-y-auto custom-bar" style="max-height: 600px">
       <div class="rounded-lg overflow-x-auto pb-6 flex gap-4 h-full bg-gray-400 custom-bar">
         <% if @users.any? %>
@@ -33,7 +33,7 @@
               <th class="px-4 py-2 md:min-w-20">Actions</th>
             </tr>
           </thead>
-            <tbody>
+            <tbody id="users">
               <% @users.each do |user| %>
                 <%= render user %>
               <% end %>

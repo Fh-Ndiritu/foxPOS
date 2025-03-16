@@ -13,7 +13,7 @@
           </span>
         <% end %>
       </div>
-      <%= render "form", user: @user, url: admin_user_path(@user) %>
+      <%= render "form", user: @user, url: admin_user_path(@user), turbo: @turbo %>
     </div>
   <% end %>
 </div>
