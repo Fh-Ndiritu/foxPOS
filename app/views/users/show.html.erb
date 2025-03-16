@@ -1,0 +1,45 @@
+<% content_for :body_class, "" %>
+<% content_for :title, current_user.full_name %>
+<div class="sidebar-left bg-[#292C2D] w-3/12 lg:w-2/12 h-full rounded-tr-3xl rounded-br-3xl py-6 justify-center">
+  <%= render('shared/sidebar_left') %>
+</div>
+
+<div class="main-section w-9/12 lg:w-10/12 pl-4 h-screen overflow-y-auto custom-bar ">
+
+  <div class="pr-8">
+    <%= render(ProfileBarComponent.new(
+      heading_content: "Your Profile",
+      current_user: current_user,
+      return_path: admin_users_path
+    )) %>
+  </div>
+
+  <div class="flex w-full gap-8">
+    <div class="w-full px-8">
+      <div class="rounded-2xl bg-bg-primary px-6 py-4 max-w-[800px] m-auto">
+      <%= content_tag :h2, "Personal Information", class: "font-semibold mt-8 mb-4 text-2xl" %>
+      <div class="flex w-full gap-12 items-center justify-start">
+        <div class="w-40 h-40 rounded-full overflow-hidden items-center border-border-tertiary border-2">
+          <% if current_user.avatar.attached? %>
+            <%= image_tag current_user.avatar.variant(:thumb) %>
+          <% else %>
+            <%= image_tag asset_path("avatar.png") %>
+          <% end %>
+        </div>
+
+        <div class="">
+          <%= content_tag :h3, current_user.full_name, class: "font-semibold mt-8 mb-4 text-2xl" %>
+          <span class="text-sm text-text-tertiary m-0 capitalize"><%= current_user.role.humanize %></span>
+        </div>
+      </div>
+
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+
+<%= turbo_frame_tag 'edit_user' do %>
+<% end %>
