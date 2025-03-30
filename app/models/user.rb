@@ -11,6 +11,7 @@ class User < ApplicationRecord
   end
 
   validates :full_name, presence: true
+  # validates_presence_of :email
   validates :avatar, content_type: [ "image/png", "image/heic", "image/jpeg", "image/webp", "image/heif" ], if: -> { avatar.attached? }
   validates :avatar, size: { less_than: 3.megabytes, message: "is too big" }, if: -> { avatar.attached? }
 

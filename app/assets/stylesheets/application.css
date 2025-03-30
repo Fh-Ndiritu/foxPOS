@@ -35,6 +35,15 @@
   color: white !important;
 }
 
+.dark-form :disabled {
+  background: #3d4142 !important;
+  color: #777979 !important;
+}
+
+.dark-form .disabled label {
+  color: #777979;
+}
+
 .devise input,
 .devise textarea,
 .devise select,

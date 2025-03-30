@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get "/users/:id/profile" => "users#show", as: :user_profile
+  patch "/users/:id/profile" => "users#update", as: :update_user_profile
+
   namespace :admin do
     resources :users
     get "generate_reset_password_token/:id" => "users#generate_reset_password_token", as: :generate_reset_password_token

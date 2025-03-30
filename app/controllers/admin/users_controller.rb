@@ -40,6 +40,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
+    redirect_to user_profile_path(@user) if current_user == @user
   end
   def update
     if @user.update(user_params)
