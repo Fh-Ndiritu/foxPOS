@@ -1,0 +1,153 @@
+<% content_for :body_class, "" %>
+<% content_for :title, @user.full_name %>
+<div class="sidebar-left bg-[#292C2D] w-3/12 lg:w-2/12 h-full rounded-tr-3xl rounded-br-3xl py-6 justify-center">
+  <%= render('shared/sidebar_left') %>
+</div>
+
+<div class="main-section w-9/12 lg:w-10/12 pl-4 h-screen overflow-y-auto custom-bar ">
+
+  <div class="pr-8">
+    <%= render(ProfileBarComponent.new(
+      heading_content: "Your Profile",
+      current_user: ,
+      return_path: root_path(current_user)
+    )) %>
+  </div>
+
+  <div class="flex w-full gap-8">
+    <div class="w-full px-8">
+      <div class="rounded-2xl bg-bg-secondary px-6 py-4 max-w-[800px] m-auto">
+      <%= content_tag :h2, "Personal Information", class: "font-semibold mt-8 mb-4 text-2xl" %>
+
+      <%= simple_form_for @user, url: update_user_profile_path(@user), data: {turbo: false}, html: { class: "dark-form" } do |form| %>
+        <% if @user.errors.any? %>
+          <div id="error_explanation" class="bg-red-50 text-red-500 px-4 py-3 font-medium rounded-lg">
+            <h2 class="text-lg font-semibold"><%= pluralize(@user.errors.count, "error") %> prevented changes from being saved:</h2>
+            <ul class="list-disc ml-6 mt-2">
+              <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <!--We display a preview of the avatar-->
+        <div class="pt-4 items-center justify-center"  data-controller="image-preview">
+        <div class="flex w-full gap-12 items-center justify-start">
+            <div class="w-40 h-40 rounded-full overflow-hidden items-center border-border-tertiary border-2">
+            <% if @user.avatar.attached? && @user.persisted? %>
+              <%= image_tag @user.avatar.variant(:thumb), class: "w-full h-full object-cover", data: { image_preview_target: 'preview'} %>
+            <% else %>
+            <%= image_tag asset_path("avatar.png"), data: { image_preview_target: 'preview'} %>
+            <% end %>
+          </div>
+        <div class="">
+          <%= content_tag :h3, @user.full_name, class: "font-semibold mt-4 mb-4 text-2xl" %>
+          <span class="text-sm text-text-tertiary m-0 capitalize"><%= @user.role.humanize %></span>
+        </div>
+      </div>
+          <div >
+          <p class="underline text-text-tertiary cursor-pointer my-2" data-image-preview-target="inputTrigger">Change profile picture</p>
+          <div class="hidden">
+            <%= form.input :avatar, as: :file, label: "Avatar",
+              label_html: { class: "text-white" },
+              input_html: { class: "block w-full", type: "file", accept: "image/*", data: { image_preview_target: 'input' } }
+            %>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 py-8">
+          <div class="">
+            <%= form.input :full_name, label: "Full Name",
+              label_html: { class: "text-white" },
+              placeholder:"Enter Full Name",
+              input_html: { class: "block w-full" } %>
+          </div>
+
+          <div class="">
+            <%= form.input :email, label: "Email",
+              label_html: { class: "text-white" },
+              placeholder:"email",
+              required: true,
+              input_html: { class: "block w-full" } %>
+          </div>
+
+
+          <% if @user.super_admin? || @user.admin?  %>
+            <div class="">
+              <%= form.input :role, as: :select, label: "Role",
+                collection: @user.manageable_roles.keys.map { |k| [k.humanize, k] },
+                label_html: { class: "text-white" },
+                input_html: { class: "block w-full" },
+                selected: @user.role %>
+            </div>
+          <% end %>
+
+
+          <div class="">
+            <%= form.input :phone, label: "Phone Number",
+              label_html: { class: "text-white" },
+              placeholder:"+254 712 345 678",
+              input_html: { class: "block w-full" } %>
+          </div>
+
+        <% if @user.super_admin? || @user.admin?  %>
+          <div class="">
+            <%= form.input :salary, label: "Salary",
+              label_html: { class: "text-white" },
+              placeholder:"20000",
+              input_html: { class: "block w-full" } %>
+          </div>
+        <% end %>
+
+
+          <div class="">
+              <%= form.label :birth_date, "Date of Birth", class: "block text-white font-semibold mb-2" %>
+              <%= form.date_field :birth_date, class: "birthday-picker
+              block w-full" %>
+
+          </div>
+
+
+          <div class="
+          <%= "disabled" if !@user.super_admin? && !@user.admin? %>
+          ">
+            <!--# we disable shift fields if not admin or super admin-->
+            <%= form.label :shift_start, "Shift starts at", class: "block text-white font-semibold mb-2" %>
+            <%= form.text_field :shift_start,
+            value: @user.shift_start.strftime("%I:%M"),
+            disabled: !@user.super_admin? && !@user.admin?,
+            class: "time-picker block w-full" %>
+          </div>
+
+          <div class="
+                    <%= "disabled" if !@user.super_admin? && !@user.admin? %>
+            ">
+            <%= form.label :shift_end, "Shift ends at", class: "block text-white font-semibold mb-2" %>
+            <%= form.text_field :shift_end,
+            value: @user.shift_end.strftime("%I:%M"),
+            disabled: !@user.super_admin? && !@user.admin?,
+            class: "time-picker block w-full " %>
+          </div>
+
+        </div>
+        <div class="flex gap-4 justify-end items-center my-6">
+          <%= link_to "Discard Changes", user_profile_path(@user),  class: "underline " %>
+          <%= render(ButtonComponent.new(
+            text: 'Save Changes',
+            type: 'submit',
+            classes: 'bg-bg-tertiary px-4 py-4 hover:bg-bg-secondary max-w-52 text-gray-900 hover:text-white hover:bg-bg-ternary'
+          )) %>
+        </div>
+      <% end %>
+
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+
+<%= turbo_frame_tag 'edit_user' do %>
+<% end %>

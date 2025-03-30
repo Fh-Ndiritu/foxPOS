@@ -1,9 +1,12 @@
 # RAILS_MASTER_KEY= generate with `EDITOR="nano" rails credentials:edit
 # POSTGRES_CONTAINER_NAME=postgresdocker
+
+# production config
 # DATABASE_URL=postgres://postgres:yourpassword@postgresdocker:5432/fox_pos_production -- update password in docker-compose.prod.yml
 # POSTGRES_PASSWORD=yourpassword
 # RAILS_ENV=production
 
+# localhost config
 # RAILS_ENV=development
 # DATABASE_URL=postgres://postgres:password@localhost/foxpos_development
 
@@ -21,16 +24,6 @@
 
 
 
-# On production solide queue might not be migrated correctly
-# run in rails console
-# ActiveRecord::Base.establish_connection(:queue)
-# load 'db/queue_schema.rb'
-
-# ActiveRecord::Base.establish_connection(:cable)
-# load 'db/cable_schema.rb'
-
-# ActiveRecord::Base.establish_connection(:cache)
-# load 'db/cache_schema.rb'
 
 
 

@@ -1,4 +1,4 @@
-<%= simple_form_for product, html: { class: "" } do |form| %>
+<%= simple_form_for product, html: { class: "dark-form" } do |form| %>
   <% if product.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-4 py-3 font-medium rounded-lg">
       <h2 class="text-lg font-semibold"><%= pluralize(product.errors.count, "error") %> prevented this product from being saved:</h2>
@@ -9,12 +9,25 @@
       </ul>
     </div>
   <% end %>
-  <!-- Image Upload -->
-  <div class="my-8">
-    <%= form.input :image, label: "Image", as: :file,
-      label_html: { class: "text-white" },
-      input_html: { class: "block w-full px-4 py-2 mt-2 border-0 rounded-lg shadow-sm" } %>
+  <!--We display a preview of the image-->
+  <div class="pt-4 items-center justify-center"  data-controller="image-preview">
+    <div >
+      <div class="w-40 h-40 rounded overflow-hidden">
+      <% if product.image.attached? && product.persisted? %>
+        <%= image_tag product.image.variant(:thumb), class: "w-full h-full object-cover", data: { image_preview_target: 'preview'} %>
+      <% else %>
+       <%= image_tag asset_path("avatar.png"), data: { image_preview_target: 'preview'} %>
+      <% end %>
+    </div>
+    <p class="underline text-text-tertiary cursor-pointer my-2" data-image-preview-target="inputTrigger">Change profile picture</p>
+    <div class="hidden">
+      <%= form.input :image, as: :file, label: "Image",
+        label_html: { class: "text-white" },
+        input_html: { class: "block w-full", type: "file", accept: "image/*", data: { image_preview_target: 'input' } }
+       %>
+    </div>
   </div>
+
   <!-- Required Fields -->
   <div class="my-8">
     <%= form.input :name, label: "Name",

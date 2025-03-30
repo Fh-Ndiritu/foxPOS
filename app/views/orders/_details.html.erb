@@ -1,7 +1,7 @@
 <%= turbo_frame_tag 'order_details', class: 'h-full' do %>
   <div class="flex w-full justify-between items-center">
     <h2 class="text-xl my-3">Order number #<%= order.id %></h2>
-      <%= link_to root_path, data: {turbo_frame: "_top"} do %>
+      <%= link_to orders_path, data: {turbo_frame: "_top"} do %>
       <span class="cursor-pointer close">
         <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="17.83" cy="17.83" r="17.83" transform="matrix(4.37114e-08 1 1 -4.37114e-08 0 0.171875)" fill="#FAC1D9"/>

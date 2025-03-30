@@ -3,7 +3,15 @@
   <%= render('shared/sidebar_left') %>
 </div>
 <div class="main-section w-10/12 py-4 px-4 block text-text-primary h-screen" data-controller="tabs">
-  <div class="order-tabs w-full px-2 mt-4 mb-8 block lg:flex justify-between items-center ">
+    <div class="pr-8">
+    <%= render(ProfileBarComponent.new(
+      heading_content: "Orders",
+      current_user: ,
+      return_path: root_path(current_user)
+    )) %>
+  </div>
+
+  <div class="order-tabs w-full px-2 mt-2 mb-8 block lg:flex justify-between items-center ">
     <div class="tabs flex overflow-x-auto custom-bar w-full lg:w-9/12 text-base justify-center lg:justify-left items-center" >
         <div class="w-full flex gap-2 items-center p-2 tabs-group" >
           <%= render(ButtonComponent.new(

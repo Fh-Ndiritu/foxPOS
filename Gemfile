@@ -79,3 +79,5 @@ gem "image_processing", "~> 1.14"
 gem "prawn", "~> 2.5"
 
 gem "prawn-table", "~> 0.2.2"
+
+gem "active_storage_validations", "~> 2.0"

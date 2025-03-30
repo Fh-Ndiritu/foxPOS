@@ -1,7 +1,11 @@
 class Product < ApplicationRecord
   belongs_to :category, counter_cache: true
-  has_one_attached :image, dependent: :destroy
   validates :image, :name, :price, :size, presence: true
+
+  has_one_attached :image do |attachable|
+    attachable.variant :icon, resize_to_fill: [ 64, 64 ]
+    attachable.variant :thumb, resize_to_fill: [ 256, 256 ]
+  end
 
 
   enum :availability, {

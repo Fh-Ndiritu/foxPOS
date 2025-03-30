@@ -4,7 +4,7 @@
         count: category.products_count,
         classes: 'tab',
         href: category_products_path(category) ,
-        image_url: category.image.url,
+        image_url: category.image.variant(:thumb).processed.url,
         data: { turbo_frame: 'products'}
         )
         ) %>

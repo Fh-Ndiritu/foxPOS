@@ -1,15 +1,14 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
   content: [
-    "./config/initializers/*.rb",
-    './public/*.html',
-    './app/helpers/**/*.rb',
-    './app/javascript/**/*.js',
-    './app/views/**/*.{erb,haml,html,slim}',
-    './app/assets/stylesheets/**/*.css', // Tailwind CSS files
-    './app/components/**/*.erb', // ViewComponent templates
-    './app/components/**/*.rb',  // ViewComponent classes
+    "./app/**/*.html.erb",
+    "./app/**/*.html",
+    "./app/helpers/**/*.rb",
+    "./app/javascript/**/*.js",
+    "./app/views/**/*.{erb,haml,html,slim}",
+    "./app/assets/stylesheets/**/*.css",
+    "./app/components/**/*.{erb,rb}",  // Ensure ViewComponents are scanned
   ],
   theme: {
     extend: {
@@ -20,16 +19,18 @@ module.exports = {
         'text-tertiary': '#FAC1D9',
         'bg-tertiary': '#FAC1D9',
         'bg-secondary': '#292C2D',
-        'bg-primary': '3D4142',
+        'bg-primary': '#3D4142',  // Fixed missing '#'
         'bg-ternary': '#5E5E5E',
         'text-secondary': '#333333',
-        'text-primary': '#ffffff'
+        'text-primary': '#ffffff',
+        'border-tertiary': '#FAC1D9',
       }
     },
   },
   plugins: [
+    // Uncomment if you are using these plugins
     // require('@tailwindcss/forms'),
     // require('@tailwindcss/typography'),
     // require('@tailwindcss/container-queries'),
-  ]
-}
+  ],
+};
