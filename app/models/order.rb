@@ -5,13 +5,11 @@ class Order < ApplicationRecord
   scope :in_process, -> { where(progress: [ :kitchen, :ready, :served ]) }
 
   def recompute_cost
-    subtotal =  items.sum { |item| item.quantity * item.product.price }
-    total = subtotal
-    tax = total.to_f * 0.16   # update to dynamic rates
-    subtotal = total-tax
+    # we shall remove tax logic so that total and subtotal are the same
+    total =  items.sum { |item| item.quantity * item.product.price }
     update(
-      subtotal:,
-      tax:,
+      subtotal: total,
+      tax: 0,
       total:
     )
   end

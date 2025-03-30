@@ -19,5 +19,5 @@
 
 
  password = '12345678'
- admin = User.create!(email: 'admin@foxpos.com', password:, role: 'admin')
+ admin = User.create!(email: 'super_admin@foxpos.com', password:, role: 'super_admin')
  Rails.logger.info "Admin user created with email: #{admin.email} and password: #{password}"
