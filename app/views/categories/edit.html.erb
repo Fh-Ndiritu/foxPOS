@@ -1,7 +1,7 @@
 <% content_for :title, "Editing #{@category.name}" %>
 <div class="md:w-2/3 w-full">
   <%= turbo_frame_tag 'edit_category' do %>
-    <div class="h-screen bg-bg-secondary rounded-tl-3xl rounded-bl-3xl fixed top-0 right-0 w-5/12 xl:w-3/12 px-8 py-12 justify-center text-white overflow-y-auto custom-bar">
+    <div class="h-screen bg-bg-secondary rounded-tl-3xl rounded-bl-3xl fixed top-0 right-0 w-full md:w-8/12 xl:w-4/12 px-8 py-12 justify-center text-white overflow-y-auto custom-bar">
       <div class="flex justify-between border-b border-bg-ternary py-3">
         <h1 class="font-bold text-xl">Editing <%= @category.name %></h1>
         <%= link_to categories_path do %>
@@ -16,6 +16,4 @@
       <%= render "form", category: @category %>
     </div>
   <% end %>
-  <%= link_to "Show this category", @category, class: "ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%= link_to "Back to categories", categories_path, class: "ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
 </div>
