@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     if current_user.super_admin? || current_user.admin?
       params.require(:user).permit(:full_name, :email, :avatar, :role, :phone, :birth_date, :salary, :shift_start, :shift_end)
     else
-    params.expect(:user).permit(:full_name, :email, :avatar, :phone, :birth_date)
+    params.require(:user).permit(:full_name, :email, :avatar, :phone, :birth_date)
     end
   end
 
