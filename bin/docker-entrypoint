@@ -6,9 +6,17 @@ if [ -z "${LD_PRELOAD+x}" ]; then
     export LD_PRELOAD
 fi
 
+# Precompile assets if in production mode and assets don't exist
+if [ "$RAILS_ENV" = "production" ] && [ ! -d "/rails/public/assets" ]; then
+  echo "Precompiling assets..."
+  bin/rails assets:precompile
+fi
+
 # If running the rails server then create or migrate existing database
-if [ "${@: -2:1}" == "./bin/rails" ] && [ "${@: -1:1}" == "server" ]; then
+if [ "${1}" = "./bin/rails" ] && [ "${2}" = "server" ]; then
+  echo "Preparing database..."
   ./bin/rails db:prepare
 fi
 
+echo "Starting application..."
 exec "${@}"
