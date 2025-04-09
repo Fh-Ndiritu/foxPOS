@@ -35,8 +35,3 @@
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
-
-docker-compose.yml
-Dockerfile
-docker-entrypoint.sh
-credentials.yml.enc

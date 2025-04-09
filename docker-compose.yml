@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - RAILS_ENV=development
+      - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+      - DATABASE_URL=${DATABASE_URL}
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/rails
+    depends_on:
+      - db
+    command: sh -c "bin/rails db:migrate && bin/rails server -b 0.0.0.0 -p 3000"
+
+  db:
+    image: postgres:16
+    container_name: postgres_db
+    restart: always
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-password}
+      - POSTGRES_DB=${POSTGRES_DB:-myapp_development}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  pg_data:
