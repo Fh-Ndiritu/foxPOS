@@ -1,0 +1,18 @@
+<!--# displays items in the right section of the order edit page
+# app/views/items/_item.html.erb-->
+<%= turbo_frame_tag dom_id(item) do %>
+  <div id="<%= dom_id item %>" class="w-full my-4 flex text-base cursor-pointer">
+    <div class="flex w-full bg-bg-ternary hover:bg-bg-primary rounded-xl px-2 py-2 justify-between items-center relative">
+      <div class="flex">
+        <div class="item-index mr-2 rounded-full p-3 bg-bg-tertiary justify-center items-center relative text-bg-secondary h-0">
+          <span class="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 text-xs">x<%= item.quantity %></span>
+        </div>
+        <p class="mr-2 text-xs text-text-primary justify-center flex items-bottom">
+          <span class="line-clamp-1 text-sm items-bottom mr-1"><%= item.product.name %></span>
+          <span class="text-sm text-gray-300">(<%= item.product.size.first.upcase %>)</span>
+        </p>
+      </div>
+      <p class="right-2 text-sm font-semibold text-text-tertiary"><%= number_to_currency(item.price, unit: 'Kes') %></p>
+    </div>
+  </div>
+<% end %>

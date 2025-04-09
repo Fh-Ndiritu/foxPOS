@@ -1,0 +1,72 @@
+.item-thumbnail {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.thumbnail-content {
+  position: relative;
+  height: 100%;
+  padding: 5px;
+}
+
+.image-container {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 65px;
+  height: 65px;
+}
+
+.item-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.text-container {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.item-title {
+  font-size: 16px;
+}
+
+.item-count {
+  font-size: 14px;
+}
+.item-link .item-thumbnail.category-thumbnail svg {
+  height: 60px;
+  width: 60px;
+}
+.item-link.active .item-thumbnail.category-thumbnail svg path {
+  fill: #333333;
+}
+
+.item-link.active .item-thumbnail.category-thumbnail:hover svg path {
+  fill: #333333;
+  transition-duration: 200;
+}
+
+.item-link.active .item-thumbnail {
+  background: #fac1d9;
+  color: #333333;
+}
+
+.item-link .item-thumbnail.category-thumbnail svg path {
+  fill: #fac1d9;
+}
+
+.item-link .item-thumbnail:hover.category-thumbnail svg path {
+  fill: #333333;
+  transition-duration: 200;
+}
+
+.item-link .item-thumbnail.category-thumbnail.active svg path {
+  fill: #333333;
+  transition-duration: 200;
+}

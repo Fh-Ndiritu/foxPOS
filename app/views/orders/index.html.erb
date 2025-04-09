@@ -1,0 +1,56 @@
+<% content_for :title, "Orders" %>
+<div class="sidebar-left bg-[#292C2D] w-2/12 h-full rounded-tr-3xl rounded-br-3xl py-6 justify-center">
+  <%= render('shared/sidebar_left') %>
+</div>
+<div class="main-section w-10/12 py-4 px-4 block text-text-primary h-screen" data-controller="tabs">
+    <div class="pr-8">
+    <%= render(ProfileBarComponent.new(
+      heading_content: "Orders",
+      current_user: ,
+      return_path: root_path(current_user)
+    )) %>
+  </div>
+
+  <div class="order-tabs w-full px-2 mt-2 mb-8 block lg:flex justify-between items-center ">
+    <div class="tabs flex overflow-x-auto custom-bar w-full lg:w-9/12 text-base justify-center lg:justify-left items-center" >
+        <div class="w-full flex gap-2 items-center p-2 tabs-group" >
+          <%= render(ButtonComponent.new(
+            text: 'Current',
+            href: orders_path,
+            classes: 'bg-bg-primary text-text-primary hover:text-text-secondary hover:bg-bg-tertiary p-2 m-0 tab active'
+            )
+          ) %>
+          <% Order.progresses.keys.each do |progress| %>
+              <%= render(ButtonComponent.new(
+              text: progress,
+              href: orders_path(progress: progress),
+              data: { turbo_frame: 'orders'},
+              classes: ' bg-bg-primary text-text-primary hover:text-text-secondary hover:bg-bg-tertiary p-2 m-0 tab'
+              )
+              ) %>
+          <% end %>
+        </div>
+    </div>
+    <div class="flex w-full lg:w-3/12 relative justify-center lg:mt-0 lg:justify-end items-center px-2 text-base p-4"
+    >
+    <%= render(ButtonComponent.new(
+      text: 'New Order',
+      classes: 'bg-bg-tertiary max-w-48 text-base px-2 py-2 hover:bg-bg-secondary text-gray-900 hover:text-white',
+      href: new_order_path,
+      data: { turbo: false}
+      )
+      ) %>
+    </div>
+  </div>
+  <div class="text-text-primary h-auto sm:h-[85vh] pb-[10vh] pr-6 overflow-y-auto custom-bar">
+    <%= turbo_frame_tag "orders" do %>
+      <% if @orders.any? %>
+        <div class="row grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8 w-full">
+          <%= render @orders %>
+        </div>
+      <% else %>
+        <p class="text-center my-10 text-text-primary">No Orders found.</p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

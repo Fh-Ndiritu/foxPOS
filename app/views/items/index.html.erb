@@ -1,0 +1,19 @@
+<% content_for :title, "Items" %>
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+  <% end %>
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">Items</h1>
+    <%= link_to "New item", new_item_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
+  </div>
+  <div id="items" class="min-w-full bg-bg-secondary">
+    <% if @items.any? %>
+      <% @items.each_with_index do |item, index| %>
+        <%= render partial: "item", locals: { item: item, index: index + 1 } %>
+      <% end %>
+    <% else %>
+      <p class="text-center my-10">No items found.</p>
+    <% end %>
+  </div>
+</div>

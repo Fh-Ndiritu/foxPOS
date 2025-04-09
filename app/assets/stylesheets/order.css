@@ -1,0 +1,42 @@
+.orders .cart {
+  background: #e0e0e0; /* Soft gray for items in cart */
+}
+
+.orders .kitchen {
+  background: #f4c2c2; /* Muted soft red for orders being prepared */
+}
+
+.orders .ready {
+  background: #f7e3a1; /* Soft warm yellow for orders ready for pickup */
+}
+
+.orders .complete {
+  background: #c7e8c9; /* Gentle pastel green for completed orders */
+}
+
+.orders .served {
+  background: #d0e4f5; /* Light pastel blue to show the order has been served */
+}
+
+.orders .pending {
+  background: #a1a1a1; /* Light gray for pending orders */
+}
+.orders table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px auto;
+}
+.orders th,
+.orders td {
+  padding: 10px;
+  text-align: left;
+}
+
+.orders .action-button:hover svg path {
+  fill: #5e5e5e;
+}
+
+.tabs-group .tab.active {
+  color: #5e5e5e;
+  background: #fac1d9;
+}

@@ -1,0 +1,35 @@
+<%= turbo_frame_tag 'order_details', class: 'h-full' do %>
+  <div class="flex w-full justify-between items-center">
+    <h2 class="text-xl my-3">Order number #<%= order.id %></h2>
+      <%= link_to orders_path, data: {turbo_frame: "_top"} do %>
+      <span class="cursor-pointer close">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="17.83" cy="17.83" r="17.83" transform="matrix(4.37114e-08 1 1 -4.37114e-08 0 0.171875)" fill="#FAC1D9"/>
+          <path d="M15.6016 13.543L20.0591 18.0005L15.6016 22.458" stroke="black" stroke-width="1.11438" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    <% end %>
+  </div>
+
+  <%= turbo_frame_tag 'order_items' do %>
+    <div class="h-3/6 custom-bar overflow-y-auto">
+      <% if order.items.any? %>
+        <% order.items.each_with_index do |item, index| %>
+          <%= render partial: "items/item", locals: { item: item, index: index + 1 } %>
+        <% end %>
+      <% else %>
+        <p class="text-center my-10">Order has no items.</p>
+      <% end %>
+    </div>
+  <% end %>
+  <%= turbo_frame_tag 'order_cost' do %>
+    <div class="block w-full bg-bg-ternary hover:bg-bg-primary rounded-xl px-2 py-4 my-8 justify-between items-center relative h-2/6 custom-bar overflow-y-auto">
+      <div class="pb-4 border-t border-dashed border-bg-secondary">
+        <p class="py-1 text-font-semibold flex w-full justify-between"> <span>Subtotal</span> <span><%= number_to_currency(order.subtotal, unit: 'Kes') %></span></p>
+        <p class="py-2 text-font-semibold flex w-full justify-between"> <span>Tax</span> <span><%= number_to_currency(order.tax, unit: 'Kes') %></span></p>
+        <p class="my-2 pt-2 border-t border-dashed border-bg-secondary text-font-semibold flex w-full justify-between"> <span>Total</span> <span><%= number_to_currency(order.total, unit: 'Kes') %></span></p>
+      </div>
+      <%= progress_form(order) if order %>
+    </div>
+  <% end %>
+<% end %>

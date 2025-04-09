@@ -1,0 +1,107 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.dark-form input,
+.dark-form textarea,
+.dark-form select,
+.dark-form select option {
+  background: #3d4142 !important;
+  padding: 15px !important;
+  color: white !important;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  margin-top: 0.6rem;
+  &::placeholder {
+    color: #777979 !important;
+  }
+}
+
+.dark-form input:focus,
+.dark-form textarea:focus,
+.dark-form select option:hover {
+  background: #66575d !important;
+  color: white !important;
+}
+
+.dark-form :disabled {
+  background: #3d4142 !important;
+  color: #777979 !important;
+}
+
+.dark-form .disabled label {
+  color: #777979;
+}
+
+.devise input,
+.devise textarea,
+.devise select,
+.devise select option {
+  background: #d1d1d1;
+  color: darkslategray;
+}
+
+#flash {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  width: auto;
+  max-width: 400px;
+  z-index: 9999;
+  opacity: 0.9;
+}
+
+.flash-message {
+  padding: 0.75rem 1rem;
+  margin: 0 0 0.5rem 0;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0.375rem;
+}
+
+.flash-message.notice {
+  background-color: #d1fae5; /* Light green */
+  color: #065f46; /* Dark green */
+}
+
+.flash-message.error,
+.flash-message.alert {
+  background-color: #fee2e2; /* Light red */
+  color: #b91c1c; /* Dark red */
+}
+
+.flash-message.info {
+  background-color: #bfdbfe; /* Light blue */
+  color: #1e40af; /* Dark blue */
+}
+
+.flash-message .close-button {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: inherit;
+  cursor: pointer;
+  margin-left: 12px;
+}
+
+.flash-message.fade-out {
+  opacity: 0;
+  transform: translateY(-10px);
+}

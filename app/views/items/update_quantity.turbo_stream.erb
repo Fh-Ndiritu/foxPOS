@@ -1,0 +1,8 @@
+<!-- Update the product preview -->
+<%= turbo_stream.replace dom_id(@item.product), class: "item-link gap-4 flex" do %>
+  <%= render partial: "orders/option", locals: { product: @item.product, order: @item.order } %>
+<% end %>
+<!-- Replace the order item with the updated quantity -->
+<%= turbo_stream.replace dom_id(@item), class: "item-link gap-4 flex" do %>
+  <%= render partial: "items/item", locals: { item: @item } %>
+<% end %>

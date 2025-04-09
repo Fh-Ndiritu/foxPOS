@@ -1,0 +1,38 @@
+<% content_for :title, "Categories" %>
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+  <% end %>
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">Categories</h1>
+    <%= link_to "New category", new_category_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
+  </div>
+  <div class="my-10 mb-4 w-full justify-between grid sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-8" id="categories">
+    <% if @categories.any? %>
+      <% @categories.each do |category| %>
+        <%= render category %>
+      <% end %>
+    <% else %>
+      <p class="text-center my-10">No categories found.</p>
+    <% end %>
+  </div>
+  <div class="my-10 mb-4 w-full overflow-x-auto rounded-lg p-4 flex gap-8 bg-bg-tertiary" id="categories">
+    <% if @categories.any? %>
+      <div class="flex gap-4">
+        <% @categories.each do |category| %>
+          <div class="min-w-[200px]"> <!-- Adjust min-width as needed -->
+            <% Category.active.each do |category| %>
+              <%= render partial: 'categories/category', locals: { href: category_products_path(category), category: category} %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-center my-10">No categories found.</p>
+    <% end %>
+  </div>
+</div>
+<%= turbo_frame_tag 'new_category' do %>
+<% end %>
+<%= turbo_frame_tag 'edit_category' do %>
+<% end %>

@@ -1,0 +1,11 @@
+<div class="item-link gap-4" id="<%= dom_id category %>">
+  <%= render(ItemThumbnailComponent.new(
+        title: category.name,
+        count: category.products_count,
+        classes: 'tab',
+        href: category_products_path(category) ,
+        image_url: category.image.variant(:thumb).processed.url,
+        data: { turbo_frame: 'products'}
+        )
+        ) %>
+</div>

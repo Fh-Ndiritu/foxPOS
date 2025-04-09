@@ -1,0 +1,58 @@
+<%= simple_form_for category, html: { class: "dark-form" } do |form| %>
+  <% if category.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-4 py-3 font-medium rounded-lg">
+      <h2 class="text-lg font-semibold"><%= pluralize(category.errors.count, "error") %> prevented this category from being saved:</h2>
+      <ul class="list-disc ml-6 mt-2">
+        <% category.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<!--We display a preview of the image-->
+  <div class="pt-4 items-center justify-center"  data-controller="image-preview">
+    <div >
+      <div class="w-40 h-40 rounded overflow-hidden">
+      <% if category.image.attached? && category.persisted? %>
+        <%= image_tag category.image.variant(:thumb), class: "w-full h-full object-cover", data: { image_preview_target: 'preview'} %>
+      <% else %>
+       <%= image_tag asset_path("avatar.png"), data: { image_preview_target: 'preview'} %>
+      <% end %>
+    </div>
+    <p class="underline text-text-tertiary cursor-pointer my-2" data-image-preview-target="inputTrigger">Change profile picture</p>
+    <div class="hidden">
+      <%= form.input :image, as: :file, label: "Image",
+        label_html: { class: "text-white" },
+        input_html: { class: "block w-full", type: "file", accept: "image/*", data: { image_preview_target: 'input' } }
+       %>
+    </div>
+  </div>
+
+  <div class="my-8">
+    <%= form.input :name, label: "Name",
+      label_html: { class: "text-white" },
+      placeholder:"Enter Category Name",
+      input_html: { class: "block w-full px-4 py-2 mt-2 border-0 rounded-lg shadow-sm" } %>
+  </div>
+  <div class="my-8">
+    <%= form.input :description, as: :text, label: "Description",
+    label_html: { class: "text-white" },
+    placeholder:"Write your description here ...",
+    input_html: { rows: 4, class: "block w-full px-4 py-2 mt-2 border-0 rounded-lg shadow-sm" } %>
+  </div>
+  <div class="my-8 flex items-center">
+    <%= form.input :active, as: :boolean, label: "Active?",
+      wrapper_html: { class: "flex items-center space-x-2" },
+      label_html: { class: "text-white" },
+      input_html: { class: "h-5 w-5 border-gray-300 rounded", checked: @category.active} %>
+  </div>
+
+  <div class="inline">
+    <%= render(ButtonComponent.new(
+      text: 'Save',
+      type: 'submit',
+      classes: 'bg-bg-tertiary px-4 py-4 hover:bg-bg-secondary max-w-32 text-gray-900 hover:text-white hover:bg-bg-ternary'
+      )
+      ) %>
+  </div>
+<% end %>

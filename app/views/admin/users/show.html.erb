@@ -1,0 +1,79 @@
+<% content_for :body_class, "" %>
+<% content_for :title, @user.full_name %>
+<div class="sidebar-left bg-[#292C2D] w-3/12 lg:w-2/12 h-full rounded-tr-3xl rounded-br-3xl py-6 justify-center">
+  <%= render('shared/sidebar_left') %>
+</div>
+
+<div class="main-section w-9/12 lg:w-10/12 pl-4 h-screen overflow-y-auto custom-bar ">
+
+  <div class="pr-8">
+    <%= render(ProfileBarComponent.new(
+      heading_content: "Showing #{@user.full_name}",
+      current_user: current_user,
+      return_path: admin_users_path
+    )) %>
+  </div>
+
+  <div class="flex w-full gap-8 pr-8">
+    <div class="w-2/6">
+      <div class="max-w-[350px]">
+        <%= content_tag :h2, "Profile Image", class: "font-semibold mt-8 mb-4 text-2xl" %>
+
+        <div class="w-full h-[350px] rounded overflow-hidden my-4">
+          <% if @user.avatar.attached?%>
+            <%= image_tag @user.avatar.variant(:thumb), class: "w-full h-auto" %>
+          <% else %>
+          <%= image_tag asset_path("avatar.png")%>
+          <% end %>
+        </div>
+
+        <div>
+            <%= render(ButtonComponent.new(
+              text: 'Edit Profile',
+              data: { turbo_frame: 'edit_user' },
+              classes: 'bg-bg-tertiary px-4 py-4 transition duration-300 hover:bg-transparent hover:border hover:border-border-tertiary w-full text-gray-900 hover:text-text-tertiary rounded my-4',
+              href: edit_admin_user_path(@user, turbo: false)
+              )
+          ) %>
+
+          <%= button_to 'Delete User',
+          admin_user_path(@user),
+            class: 'bg-none border border-border-tertiary text-text-tertiary px-4 py-4 transition duration-300 hover:bg-bg-tertiary w-full text-gray-900 hover:text-white rounded my-4',
+            method: :delete,
+            data: { turbo_confirm: 'This will be lost forever, like forever! Are you sure?'}
+            %>
+
+
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="w-4/6">
+      <%= content_tag :h2, "Employee Personal Details", class: "font-semibold mt-8 mb-4 text-2xl" %>
+      <%= render(CardComponent.new(
+        fields: personal_details(@user),
+        classes: '',
+        item_classes: ''
+      )) %>
+
+
+      <%= content_tag :h2, "Employee Job Details", class: "font-semibold mt-8 mb-4 text-2xl" %>
+      <%= render(CardComponent.new(
+        fields:job_details(@user),
+        classes: '',
+        item_classes: ''
+      )) %>
+
+      <%= render 'admin/users/password_management'%>
+
+    </div>
+
+  </div>
+
+
+</div>
+
+<%= turbo_frame_tag 'edit_user' do %>
+<% end %>

@@ -1,0 +1,47 @@
+<%= form_with(model: order, class: "contents") do |form| %>
+  <% if order.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
+      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul class="list-disc ml-6">
+        <% order.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :customer_name %>
+    <%= form.text_field :customer_name, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": order.errors[:customer_name].none?, "border-red-400 focus:outline-red-600": order.errors[:customer_name].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :progress %>
+    <%= form.number_field :progress, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": order.errors[:progress].none?, "border-red-400 focus:outline-red-600": order.errors[:progress].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :items %>
+    <%= form.text_field :items, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": order.errors[:items].none?, "border-red-400 focus:outline-red-600": order.errors[:items].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :subtotal %>
+    <%= form.text_field :subtotal, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": order.errors[:subtotal].none?, "border-red-400 focus:outline-red-600": order.errors[:subtotal].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :tax %>
+    <%= form.text_field :tax, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": order.errors[:tax].none?, "border-red-400 focus:outline-red-600": order.errors[:tax].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :total %>
+    <%= form.text_field :total, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": order.errors[:total].none?, "border-red-400 focus:outline-red-600": order.errors[:total].any?}] %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>

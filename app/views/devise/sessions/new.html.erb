@@ -1,0 +1,45 @@
+<% content_for :title, "Login" %>
+
+<div class="w-full h-screen text-text-primary py-6 pt-10 px-6 mx-10 devise">
+  <h1 class="text-text-tertiary text-4xl font-bold h-auto w-full text-center pt-20 pb-6 ">FOXPOS</h1>
+  <div class="bg-bg-ternary rounded-3xl p-6 w-full md:w-[50%] lg:w-[40%] xl:w-[30%] mx-auto my-10">
+
+   <div class="text-center p-4">
+      <h2 class="text-text-tertiary text-2xl font-bold h-auto w-full text-center p-2 ">Welcome back!</h2>
+      <h2 class="text-white text-base font-formal h-auto w-full text-center ">Please enter your credentials to continue.</h2>
+     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |form| %>
+      <div class="form-inputs text-left ">
+        <div class="my-8">
+          <%= form.input :email,
+            label_html: { class: "text-white" },
+            placeholder:"Enter your email",
+            required: true,
+            auto_focus: true,
+            input_html: { class: "block w-full px-4 py-2 mt-2 border-0 rounded-lg shadow-sm", autocomplete: "email" } %>
+        </div>
+        <div class="my-8">
+          <%= form.input :password,
+            label_html: { class: "text-white" },
+            placeholder:"Enter your password",
+            required: true,
+            input_html: { class: "block w-full px-4 py-2 mt-2 border-0 rounded-lg shadow-sm", autocomplete: "current-password" }  %>
+        </div>
+        <%#= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+      </div>
+
+      <div class="form-actions flex justify-center pt-2 pb-4">
+        <%= render(ButtonComponent.new(
+          text: 'Login',
+          type: 'submit',
+          classes: 'bg-bg-tertiary px-4 py-2 hover:bg-bg-secondary text-gray-900 hover:text-white'
+          )
+        ) %>
+      </div>
+
+      <div class="w-full pt-6">
+        <%= link_to "Forgot Password?", new_user_password_path, class:"text-underline text-text-tertiary"%>
+      </div>
+    <% end %>
+   </div>
+  </div>
+</div>

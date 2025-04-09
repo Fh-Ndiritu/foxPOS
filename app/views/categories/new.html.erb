@@ -1,0 +1,19 @@
+<% content_for :title, "New category" %>
+<div class="md:w-2/3 w-full">
+  <%= turbo_frame_tag 'new_category' do %>
+    <div class="h-screen bg-bg-secondary rounded-tl-3xl rounded-bl-3xl fixed top-0 right-0 w-full md:w-8/12 xl:w-4/12 px-8 py-12 justify-center text-white overflow-y-auto custom-bar">
+      <div class="flex justify-between border-b border-bg-ternary py-3">
+        <h1 class="font-bold text-2xl">New Category</h1>
+        <%= link_to categories_path do %>
+          <span class="cursor-pointer close">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="17.83" cy="17.83" r="17.83" transform="matrix(4.37114e-08 1 1 -4.37114e-08 0 0.171875)" fill="#3D4142"/>
+              <path d="M15.6016 13.543L20.0591 18.0005L15.6016 22.458" stroke="white" stroke-width="1.11438" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        <% end %>
+      </div>
+      <%= render "form", category: @category %>
+    </div>
+  <% end %>
+</div>

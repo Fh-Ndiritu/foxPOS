@@ -1,0 +1,63 @@
+  <%= turbo_frame_tag "products" do %>
+  <div class="flex justify-between items-center w-full text-white py-4">
+    <div class="justify-between w-8/12 flex items-center">
+      <h1 class="font-bold text-2xl py-6 flex">
+        <% if @category %>
+          <%=  @category.name %>
+        <% else %>
+          Popular Items
+        <% end %>
+      </h1>
+      <% if @category %>
+        <%= render(ButtonComponent.new(
+          text: 'Edit Category',
+          classes: 'flex h-auto bg-bg-tertiary px-4 py-2 hover:bg-bg-secondary max-w-60 text-gray-900 hover:text-white',
+          href: edit_category_path(@category),
+          data: {turbo_frame: 'edit_category'}
+          )) %>
+      <% end %>
+    </div>
+    <div class="w-4/12 justify-end flex">
+      <%= render(ButtonComponent.new(
+      text: 'New Product',
+      classes: 'bg-bg-tertiary px-4 py-2 hover:bg-bg-secondary max-w-60 text-gray-900 hover:text-white',
+      href: new_product_path,
+      data: { turbo_frame: 'new_product'}
+      )
+      ) %>
+    </div>
+  </div>
+  <div id="products" class="min-w-full rounded">
+    <div class="rounded-lg p-4 bg-[#565E60] overflow-y-auto custom-bar" style="max-height: 600px">
+      <div class="rounded-lg overflow-x-auto pb-6 flex gap-4 h-full bg-gray-400 custom-bar">
+        <% if @products.any? %>
+          <table class="min-w-full rounded-lg overflow-hidden text-white items-center">
+          <thead class="py-4">
+            <tr class="text-sm">
+              <!--<th class="px-4 py-2"><input type="checkbox"></th>-->
+              <th class="px-4 py-2 md:min-w-20">Product</th>
+              <th class="px-4 py-2 md:min-w-20">Name</th>
+              <th class="px-4 py-2 md:min-w-20 ">Item ID</th>
+              <th class="px-4 py-2 md:min-w-20">Stock</th>
+              <% unless @category.present? %>
+                <th class="px-4 py-2 md:min-w-20">Category</th>
+              <% end %>
+              <th class="px-4 py-2 md:min-w-20">Price</th>
+              <th class="px-4 py-2 md:min-w-20">Availability</th>
+              <th class="px-4 py-2 md:min-w-20">Edit</th>
+              <th class="px-4 py-2 md:min-w-20">Delete</th>
+            </tr>
+          </thead>
+            <tbody>
+              <% @products.each do |product| %>
+                <%= render product %>
+              <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <p class=" my-10 text-white w-full w-full text-center">No products found.</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

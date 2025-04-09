@@ -1,0 +1,19 @@
+.order-item-thumbnail .image-container {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 55px;
+  height: 55px;
+}
+.order-item-thumbnail .size {
+  color: #292c2d;
+  font-size: 12px;
+}
+
+.order-item-thumbnail .text-container {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  padding: 0 10px;
+}

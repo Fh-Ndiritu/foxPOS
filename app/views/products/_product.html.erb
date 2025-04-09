@@ -1,0 +1,38 @@
+<tr class="hover:bg-[#565E60] <%= product.id.even? ? 'bg-bg-secondary': 'bg-bg-primary' %>" id="<%= dom_id product %>">
+  <!--<td class="px-4 py-2 text-center justify-center"><input type="checkbox" value="<%#= product.id %>"></td>-->
+  <td class="px-4 py-2 text-center justify-center">
+    <div class="w-10 h-10 rounded-full overflow-hidden items-center">
+      <% if product.image.attached? %>
+          <%= image_tag product.image.variant(:icon) %>
+      <% else %>
+        <%= image_tag asset_path("avatar.png") %>
+      <% end %>
+    </div>
+  </td>
+  <td class="px-4 py-2 text-center justify-center"><%= product.name %></td>
+  <td class="px-4 py-2 text-center justify-center min-w-10"><%= product.id %></td>
+  <td class="px-4 py-2 text-center justify-center"><%= product.stock %></td>
+  <% unless @category.present? %>
+    <td class="px-4 py-2 text-center justify-center"><%= product.category.name %></td>
+  <% end %>
+  <td class="px-4 py-2 text-center justify-center"><%= product.price %></td>
+  <td class="px-4 py-2 text-center justify-center">
+    <div class=" <%= product.in_stock? ? 'text-green-600' : 'text-red-600'%>">
+      <%= product.availability.humanize %>
+    </div>
+  </td>
+  <td class="px-4 py-2 text-center justify-center">
+    <%= link_to edit_product_path(product), data: {turbo_frame: 'edit_product'} do %>
+      <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3.66406 15.9572V18.0591C3.66406 18.1807 3.71235 18.2972 3.79831 18.3832C3.88426 18.4692 4.00084 18.5174 4.1224 18.5174H6.2289C6.35022 18.5174 6.46658 18.4693 6.55248 18.3836L15.2131 9.72294L12.4631 6.97294L3.79881 15.6336C3.7128 15.7194 3.66433 15.8357 3.66406 15.9572ZM13.598 5.83719L16.348 8.58719L17.6863 7.24886C17.8582 7.07696 17.9547 6.84384 17.9547 6.60077C17.9547 6.35771 17.8582 6.12459 17.6863 5.95269L16.2334 4.49886C16.0615 4.32701 15.8284 4.23047 15.5853 4.23047C15.3422 4.23047 15.1091 4.32701 14.9372 4.49886L13.598 5.83719Z" fill="white"/>
+      </svg>
+    <% end %>
+  </td>
+  <td class="px-4 py-2 text-center justify-center">
+    <%= button_to product_path(product), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: "text-red-500 hover:text-red-700 flex items-center" do %>
+      <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2.97911 14.5183C2.55745 14.5183 2.20545 14.3772 1.92311 14.0948C1.64017 13.8119 1.4987 13.4596 1.4987 13.0379V1.685H0.582031V0.768333H4.2487V0.0625H9.7487V0.768333H13.4154V1.685H12.4987V13.0379C12.4987 13.4596 12.3575 13.8116 12.0752 14.0939C11.7923 14.3769 11.4399 14.5183 11.0183 14.5183H2.97911ZM4.98936 11.7683H5.90603V3.51833H4.98936V11.7683ZM8.09137 11.7683H9.00803V3.51833H8.09137V11.7683Z" fill="#E70000"/>
+      </svg>
+    <% end %>
+  </td>
+</tr>

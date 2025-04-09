@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+
+@layer components {
+  .btn-primary {
+    @apply py-2 px-4 bg-blue-200;
+  }
+}
+
+*/
+
+.sidebar-left .active .btn {
+  color: black;
+  background: #fac1d9;
+}
+
+.custom-bar::-webkit-scrollbar {
+  width: 12px;
+}
+
+.overflow-y-scroll.custom-bar {
+  padding: 20px !important;
+}
+
+.custom-bar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 8px;
+  background-color: lightgray;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.custom-bar::-webkit-scrollbar-thumb {
+  background-color: #4c2a5c;
+  border-radius: 8px;
+  cursor: grab;
+}
+
+.custom-bar::-webkit-scrollbar-thumb:hover {
+  background: #4c2a5c;
+}
+
+.collapsed-sidebar .sidebar-left {
+  display: none;
+}

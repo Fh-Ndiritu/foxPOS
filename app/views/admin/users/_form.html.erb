@@ -1,0 +1,100 @@
+<%= simple_form_for user, url:,  html: { class: "dark-form" }, data: { turbo: } do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-4 py-3 font-medium rounded-lg">
+      <h2 class="text-lg font-semibold"><%= pluralize(user.errors.count, "error") %> prevented this user from being saved:</h2>
+      <ul class="list-disc ml-6 mt-2">
+        <% user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <!--We display a preview of the avatar-->
+  <div class="pt-4 items-center justify-center"  data-controller="image-preview">
+    <div >
+      <div class="w-40 h-40 rounded overflow-hidden">
+      <% if user.avatar.attached? && user.persisted? %>
+        <%= image_tag user.avatar.variant(:thumb), class: "w-full h-full object-cover", data: { image_preview_target: 'preview'} %>
+      <% else %>
+       <%= image_tag asset_path("avatar.png"), data: { image_preview_target: 'preview'} %>
+      <% end %>
+    </div>
+    <p class="underline text-text-tertiary cursor-pointer my-2" data-image-preview-target="inputTrigger">Change profile picture</p>
+    <div class="hidden">
+      <%= form.input :avatar, as: :file, label: "Avatar",
+        label_html: { class: "text-white" },
+        input_html: { class: "block w-full", type: "file", accept: "image/*", data: { image_preview_target: 'input' } }
+       %>
+    </div>
+  </div>
+
+
+  <div class="grid grid-cols-2 gap-4 py-8">
+    <div class="">
+      <%= form.input :full_name, label: "Full Name",
+        label_html: { class: "text-white" },
+        placeholder:"Enter User Name",
+        input_html: { class: "block w-full" } %>
+    </div>
+
+    <div class="">
+      <%= form.input :email, label: "Email",
+        label_html: { class: "text-white" },
+        placeholder:"email",
+        input_html: { class: "block w-full" } %>
+    </div>
+
+
+    <div class="">
+      <%= form.input :role, as: :select, label: "Role",
+        collection: current_user.manageable_roles.keys.map { |k| [k.humanize, k] },
+        label_html: { class: "text-white" },
+        input_html: { class: "block w-full" },
+        selected: user.role %>
+    </div>
+
+    <div class="">
+      <%= form.input :phone, label: "Phone Number",
+        label_html: { class: "text-white" },
+        placeholder:"+254 712 345 678",
+        input_html: { class: "block w-full" } %>
+    </div>
+
+    <div class="">
+      <%= form.input :salary, label: "Salary",
+        label_html: { class: "text-white" },
+        placeholder:"20000",
+        input_html: { class: "block w-full" } %>
+    </div>
+
+    <div class="">
+        <%= form.label :birth_date, "Date of Birth", class: "block text-white font-semibold mb-2" %>
+        <%= form.date_field :birth_date, class: "birthday-picker
+        block w-full" %>
+
+    </div>
+
+    <div class="">
+      <%= form.label :shift_start, "Shift starts at", class: "block text-white font-semibold mb-2" %>
+      <%= form.text_field :shift_start,
+      value: user.shift_start.strftime("%I:%M"),
+      class: "time-picker block w-full" %>
+    </div>
+
+    <div class="">
+      <%= form.label :shift_end, "Shift ends at", class: "block text-white font-semibold mb-2" %>
+      <%= form.text_field :shift_end,
+      value: user.shift_end.strftime("%I:%M"),
+      class: "time-picker block w-full " %>
+    </div>
+  </div>
+  <div class="inline">
+    <%= render(ButtonComponent.new(
+      text: 'Save',
+      type: 'submit',
+      classes: 'bg-bg-tertiary px-4 py-4 hover:bg-bg-secondary max-w-32 text-gray-900 hover:text-white hover:bg-bg-ternary'
+    )) %>
+  </div>
+<% end %>

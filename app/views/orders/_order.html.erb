@@ -1,0 +1,94 @@
+<%= turbo_frame_tag dom_id(order) do %>
+  <div class="bg-bg-secondary p-4 rounded-lg text-white block">
+    <div class="flex w-full items-center justify-between pb-4">
+      <span>Order #<%= order.id %></span>
+      <% if order.served? || order.complete? %>
+          <%= link_to show_receipt_path(order, format: :pdf), target: "_blank" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#FAC1D9" viewBox="0 0 256 256">
+            <path d="M214.67,72H200V40a8,8,0,0,0-8-8H64a8,8,0,0,0-8,8V72H41.33C27.36,72,16,82.77,16,96v80a8,8,0,0,0,8,8H56v32a8,8,0,0,0,8,8H192a8,8,0,0,0,8-8V184h32a8,8,0,0,0,8-8V96C240,82.77,228.64,72,214.67,72ZM72,48H184V72H72ZM184,208H72V160H184Zm40-40H200V152a8,8,0,0,0-8-8H64a8,8,0,0,0-8,8v16H32V96c0-4.41,4.19-8,9.33-8H214.67c5.14,0,9.33,3.59,9.33,8Zm-24-52a12,12,0,1,1-12-12A12,12,0,0,1,200,116Z">
+            </path>
+          </svg>
+        <% end %>
+
+      <% end %>
+      <div class="rounded-lg px-4 py-2  text-text-secondary <%= order.progress %>">
+        <%= order.progress %>
+      </div>
+    </div>
+    <div class="flex justify-between pb-4 border-b border-bg-ternary">
+      <span><%= order.created_at.strftime("%A, %d, %Y") %></span>
+      <span><%= order.created_at.strftime("%l:%M %p") %></span>
+    </div>
+    <div class=" border-b border-bg-ternary">
+      <table>
+        <thead>
+          <tr class="opacity-60">
+            <th>Qty</th>
+            <th>Item</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% order.items.each do |item| %>
+            <tr>
+              <td><%= item.quantity %></td>
+              <td><%= item.name %></td>
+              <td><%= item.price %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div>
+
+      <div class="flex w-full justify-between py-3">
+        <span>SubTotal</span>
+        <span><%= number_with_precision(order.subtotal, precision: 2) %></span>
+      </div>
+
+    </div>
+
+    <div class="flex w-full justify-between items-center">
+      <!--Icons will be here-->
+      <div class="flex">
+        <% if  !order.complete?  %>
+          <%= link_to edit_order_path(order), class: "mr-4", data: { turbo: false} do %>
+            <div class="action-button border border-bg-tertiary px-4 py-2 hover:bg-bg-tertiary hover:text-text-primary rounded-lg ">
+              <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.5 17.2485V20.9985H7.25L18.31 9.93854L14.56 6.18854L3.5 17.2485ZM21.21 7.03854C21.3027 6.94602 21.3762 6.83614 21.4264 6.71516C21.4766 6.59419 21.5024 6.46451 21.5024 6.33354C21.5024 6.20257 21.4766 6.07289 21.4264 5.95191C21.3762 5.83094 21.3027 5.72105 21.21 5.62854L18.87 3.28854C18.7775 3.19583 18.6676 3.12229 18.5466 3.07211C18.4257 3.02192 18.296 2.99609 18.165 2.99609C18.034 2.99609 17.9043 3.02192 17.7834 3.07211C17.6624 3.12229 17.5525 3.19583 17.46 3.28854L15.63 5.11854L19.38 8.86854L21.21 7.03854Z" fill="#FAC1D9"/>
+              </svg>
+            </div>
+          <% end %>
+          <%= button_to order, method: :delete, data: {turbo: false},  class: "mr-4" do %>
+            <div class="action-button border border-bg-tertiary px-4 py-2 hover:bg-bg-tertiary hover:text-text-primary rounded-lg ">
+              <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 5H14.5C14.5 4.46957 14.2893 3.96086 13.9142 3.58579C13.5391 3.21071 13.0304 3 12.5 3C11.9696 3 11.4609 3.21071 11.0858 3.58579C10.7107 3.96086 10.5 4.46957 10.5 5ZM9 5C9 4.54037 9.09053 4.08525 9.26642 3.66061C9.44231 3.23597 9.70012 2.85013 10.0251 2.52513C10.3501 2.20012 10.736 1.94231 11.1606 1.76642C11.5852 1.59053 12.0404 1.5 12.5 1.5C12.9596 1.5 13.4148 1.59053 13.8394 1.76642C14.264 1.94231 14.6499 2.20012 14.9749 2.52513C15.2999 2.85013 15.5577 3.23597 15.7336 3.66061C15.9095 4.08525 16 4.54037 16 5H21.75C21.9489 5 22.1397 5.07902 22.2803 5.21967C22.421 5.36032 22.5 5.55109 22.5 5.75C22.5 5.94891 22.421 6.13968 22.2803 6.28033C22.1397 6.42098 21.9489 6.5 21.75 6.5H20.43L19.26 18.611C19.1702 19.539 18.738 20.4002 18.0477 21.0268C17.3573 21.6534 16.4583 22.0004 15.526 22H9.474C8.54186 22.0001 7.6431 21.653 6.95295 21.0265C6.2628 20.3999 5.83073 19.5388 5.741 18.611L4.57 6.5H3.25C3.05109 6.5 2.86032 6.42098 2.71967 6.28033C2.57902 6.13968 2.5 5.94891 2.5 5.75C2.5 5.55109 2.57902 5.36032 2.71967 5.21967C2.86032 5.07902 3.05109 5 3.25 5H9ZM11 9.75C11 9.55109 10.921 9.36032 10.7803 9.21967C10.6397 9.07902 10.4489 9 10.25 9C10.0511 9 9.86032 9.07902 9.71967 9.21967C9.57902 9.36032 9.5 9.55109 9.5 9.75V17.25C9.5 17.4489 9.57902 17.6397 9.71967 17.7803C9.86032 17.921 10.0511 18 10.25 18C10.4489 18 10.6397 17.921 10.7803 17.7803C10.921 17.6397 11 17.4489 11 17.25V9.75ZM14.75 9C14.5511 9 14.3603 9.07902 14.2197 9.21967C14.079 9.36032 14 9.55109 14 9.75V17.25C14 17.4489 14.079 17.6397 14.2197 17.7803C14.3603 17.921 14.5511 18 14.75 18C14.9489 18 15.1397 17.921 15.2803 17.7803C15.421 17.6397 15.5 17.4489 15.5 17.25V9.75C15.5 9.55109 15.421 9.36032 15.2803 9.21967C15.1397 9.07902 14.9489 9 14.75 9Z" fill="#FAC1D9"/>
+              </svg>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <% if order.pre_serving? %>
+        <%= form_with model: order, data: {turbo: false} do |f| %>
+          <button type="submit"
+          name="order[progress]"
+          value="served"
+          class="btn flex items-center font-semibold rounded-lg text-center duration-200 bg-bg-tertiary px-4 py-2 hover:bg-bg-ternary max-w-60 text-gray-900 hover:text-white cursor-pointer"
+          >
+            Served
+          </button>
+        <% end %>
+      <% elsif order.served? %>
+        <%= form_with model: order, data: {turbo: false} do |f| %>
+          <button type="submit"
+          name="order[progress]"
+          value="complete"
+          class="btn flex items-center font-semibold rounded-lg text-center duration-200 bg-bg-tertiary px-4 py-2 hover:bg-bg-ternary max-w-60 text-gray-900 hover:text-white cursor-pointer"
+          >
+          Set Paid
+          </button>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,30 @@
+# RAILS_MASTER_KEY= generate with `EDITOR="nano" rails credentials:edit
+# POSTGRES_CONTAINER_NAME=postgresdocker
+
+# production config
+# DATABASE_URL=postgres://postgres:yourpassword@postgresdocker:5432/fox_pos_production -- update password in docker-compose.prod.yml
+# POSTGRES_PASSWORD=yourpassword
+# RAILS_ENV=production
+
+# localhost config
+# RAILS_ENV=development
+# DATABASE_URL=postgres://postgres:password@localhost/foxpos_development
+
+
+# Docker commands to remember
+
+# Remove unused docker images
+# docker image prune -a
+
+
+# Fresh rebuild
+# docker-compose -f docker-compose.prod.yml down --volumes --remove-orphans
+# docker-compose -f docker-compose.prod.yml build --no-cache
+# docker-compose -f docker-compose.prod.yml up --build
+
+
+
+
+
+
+

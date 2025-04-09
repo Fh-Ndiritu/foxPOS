@@ -1,0 +1,29 @@
+<% if @href.present? %>
+  <!-- Render as link -->
+  <a href="<%= @href %>" data-turbo-frame="<%= @data[:turbo_frame] %>"
+    class="<%= @classes %>">
+    <!-- Icon -->
+    <span class="mb-1 rounded-full bg-white text-4xl">
+      <%= raw @svg %>
+    </span>
+    <!-- Button Text -->
+    <span>
+      <%= @text %>
+    </span>
+  </a>
+<% else %>
+  <!-- Render as button -->
+  <button type="<%= @type %>"
+    class="<%= @classes %>">
+    <% if @svg %>
+      <!-- Icon -->
+      <span class="p-2 mb-2 rounded-full bg-white">
+        <%= raw @svg %>
+      </span>
+    <% end %>
+    <!-- Button Text -->
+    <span>
+      <%= @text %>
+    </span>
+  </button>
+<% end %>
