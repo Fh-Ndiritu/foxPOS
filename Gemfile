@@ -10,7 +10,7 @@ gem "importmap-rails" # Use JavaScript with ESM import maps [https://github.com/
 gem "turbo-rails" # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "stimulus-rails" # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "tailwindcss-rails" # Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
-gem "tailwindcss-ruby", "3.4.13"
+gem "tailwindcss-ruby", "4.1.4"
 gem "jbuilder" # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
