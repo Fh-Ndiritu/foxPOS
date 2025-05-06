@@ -15,7 +15,7 @@ services:
       - .:/rails
     depends_on:
       - db
-    command: sh -c "bin/rails db:migrate && bin/rails server -b 0.0.0.0 -p 3000"
+    command: sh -c "bin/rails db:migrate && bin/rails db:seed && bin/rails server -b 0.0.0.0 -p 3000"
 
   db:
     image: postgres:16
@@ -24,7 +24,7 @@ services:
     environment:
       - POSTGRES_USER=${POSTGRES_USER:-postgres}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-password}
-      - POSTGRES_DB=${POSTGRES_DB:-myapp_development}
+      - POSTGRES_DB=${POSTGRES_DB:-fox_pos_development}
     ports:
       - "5432:5432"
     volumes:

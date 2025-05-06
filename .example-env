@@ -8,7 +8,7 @@
 
 # localhost config
 # RAILS_ENV=development
-# DATABASE_URL=postgres://postgres:password@localhost/foxpos_development
+# DATABASE_URL=postgresql://postgres:password@db:5432/foxpos_development
 
 
 # Docker commands to remember
