@@ -15,8 +15,7 @@ services:
       - .:/rails
     depends_on:
       - db
-    command: sh -c "bin/rails db:migrate && bin/rails db:seed && bin/rails server -b 0.0.0.0 -p 3000"
-
+    command: sh -c "rm -f tmp/pids/server.pid && bin/rails db:migrate && bin/rails db:seed && bin/rails server -b 0.0.0.0 -p 3000"
   db:
     image: postgres:16
     container_name: postgres_db
