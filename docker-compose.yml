@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-  app:
+  dev_app:
     build:
       context: .
       dockerfile: Dockerfile
@@ -18,12 +18,12 @@ services:
     command: sh -c "rm -f tmp/pids/server.pid && bin/rails db:migrate && bin/rails db:seed && bin/rails server -b 0.0.0.0 -p 3000"
   db:
     image: postgres:16
-    container_name: postgres_db
+    container_name: postgresdocker
     restart: always
     environment:
       - POSTGRES_USER=${POSTGRES_USER:-postgres}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-password}
-      - POSTGRES_DB=${POSTGRES_DB:-fox_pos_development}
+      - POSTGRES_DB=${POSTGRES_DB:-foxpos_development}
     ports:
       - "5432:5432"
     volumes:

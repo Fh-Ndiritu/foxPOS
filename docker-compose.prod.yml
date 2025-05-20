@@ -13,7 +13,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - .:/rails
+      # - .:/rails  # this mounts the local files to the image, uncomment if you really want to modify the image, this might cause migration issues
       - db-data:/rails/db
       - ./ssl:/rails/ssl
     depends_on:
