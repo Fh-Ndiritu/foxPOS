@@ -13,12 +13,12 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - .:/rails
+      # - .:/rails  # this mounts the local files to the image, uncomment if you really want to modify the image, this might cause migration issues
       - db-data:/rails/db
       - ./ssl:/rails/ssl
     depends_on:
       - db
-    command: sh -c "bin/rails db:prepare && bin/rails assets:precompile && bin/rails server -b 0.0.0.0 -p 3000"
+    command: sh -c "rm -f tmp/pids/server.pid && bin/rails db:prepare && bin/rails db:seed && bin/rails assets:precompile && bin/rails server -b 0.0.0.0 -p 3000"
 
   db:
     image: postgres:16
@@ -29,9 +29,9 @@ services:
     volumes:
       - pg_data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_USER=postgres
+      - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=fox_pos_production
+      - POSTGRES_DB=${POSTGRES_DB}
 
 volumes:
   db-data:
