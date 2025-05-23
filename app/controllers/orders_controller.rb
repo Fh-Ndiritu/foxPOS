@@ -6,9 +6,9 @@ class OrdersController < ApplicationController
   def index
     progress = params[:progress]
     if Order.progresses.keys.include?(progress)
-      @orders = Order.where(progress:).limit(20)
+      @orders = Order.where(progress:, user: current_user).limit(20)
     else
-      @orders = Order.in_process.order(progress: :desc).limit(20)
+      @orders = Order.in_process.where(user: current_user).order(progress: :desc).limit(20)
     end
   end
 
@@ -80,7 +80,7 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.expect(order: [ :customer_name, :progress ])
+      params.expect(order: [ :customer_name, :progress ]).merge(user: current_user)
     end
 
 

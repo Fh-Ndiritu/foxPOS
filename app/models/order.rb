@@ -1,6 +1,8 @@
 class Order < ApplicationRecord
   has_many :items, dependent: :destroy
   has_many :products, through: :items
+  belongs_to :user, optional: true
+
   default_scope { order(created_at: :desc, progress: :asc) }
   scope :in_process, -> { where(progress: [ :kitchen, :ready, :served ]) }
 
@@ -27,6 +29,6 @@ class Order < ApplicationRecord
   end
 
   def server_name
-    ""
+    user.full_name
   end
 end
